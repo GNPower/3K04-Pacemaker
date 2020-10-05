@@ -1,7 +1,7 @@
 # 3k04 Pacemaker Project
 This is the Github repository for our 3K04 Pacemaker Group
 
-###Getting Started
+### Getting Started
 - Clone this repository to your working environment on your computer
 	- If you are using command line copy this text:
 	git clone https://github.com/GNPower/3K04-Pacemaker.git
@@ -17,10 +17,6 @@ This is the Github repository for our 3K04 Pacemaker Group
 
 # Project Description
 
-![](https://https://github.com/GNPower/3K04-Pacemaker/logo.png)
-
-![](https://img.shields.io/github/stars/pandao/editor.md.svg) ![](https://img.shields.io/github/forks/pandao/editor.md.svg) ![](https://img.shields.io/github/tag/pandao/editor.md.svg) ![](https://img.shields.io/github/release/pandao/editor.md.svg) ![](https://img.shields.io/github/issues/pandao/editor.md.svg)
-
 
 **Table of Contents**
 
@@ -28,4 +24,4 @@ This is the Github repository for our 3K04 Pacemaker Group
 
 [TOC]
 
-###End
+### End
