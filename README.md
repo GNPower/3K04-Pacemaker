@@ -1,3 +1,5 @@
+<img src="logo.png" height="120" width="120">
+
 # 3k04 Pacemaker Project
 This is the Github repository for our 3K04 Pacemaker Group
 
@@ -14,15 +16,5 @@ This is the Github repository for our 3K04 Pacemaker Group
 	- The base gitnore by default ignores all project and build files from some common IDEs like Visual Studio (Code), Eclipse, IntelliJ, NetBeans
 	- If you are using a different IDE please add its .gitnore configuration to the base .gitnore
 	- If you wan to ignore any additional files, add that file to the closest .gitnore (i.e. if you are ignoring something in "3K04-Pacemaker/DCM"  add it to the  "3K04-Pacemaker/DMC/.gitnore"  and not the  "3K04-Pacemaker/.gitnore")
-
+    
 # Project Description
-
-![](https://github.com/GNPower/3K04-Pacemaker/logo.png)
-
-**Table of Contents**
-
-[TOCM]
-
-[TOC]
-
-### End
