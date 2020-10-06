@@ -219,7 +219,8 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-[Ll]ogs/
+[Ll]ogs/*
+![Ll]ogs/.keep
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -548,3 +549,5 @@ MigrationBackup/
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+
+!*.keep

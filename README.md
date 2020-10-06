@@ -1,4 +1,4 @@
-<img src="logo.png" height="120" width="120">
+<img src="DCM/flaskapp/static/logo.png" height="120" width="120">
 
 # 3k04 Pacemaker Project
 This is the Github repository for our 3K04 Pacemaker Group
@@ -12,9 +12,9 @@ This is the Github repository for our 3K04 Pacemaker Group
 	- ~/3K04-Pacemaker is the base directory for this project
 	- ~/3K04-Pacemaker/DCM is the base directory for the GUI and other DCM stuff
 	- ~/3K04-Pacemaker/Simulink is the base directory for all Matlab Simulink models
-- Each base directory contains a .gitnore
-	- The base gitnore by default ignores all project and build files from some common IDEs like Visual Studio (Code), Eclipse, IntelliJ, NetBeans
-	- If you are using a different IDE please add its .gitnore configuration to the base .gitnore
-	- If you wan to ignore any additional files, add that file to the closest .gitnore (i.e. if you are ignoring something in "3K04-Pacemaker/DCM"  add it to the  "3K04-Pacemaker/DMC/.gitnore"  and not the  "3K04-Pacemaker/.gitnore")
+- Each base directory contains a .gitignore
+	- The base gitignore by default ignores all project and build files from some common IDEs like Visual Studio (Code), Eclipse, IntelliJ, NetBeans
+	- If you are using a different IDE please add its .gitignore configuration to the base .gitignore
+	- If you wan to ignore any additional files, add that file to the closest .gitignore (i.e. if you are ignoring something in "3K04-Pacemaker/DCM"  add it to the  "3K04-Pacemaker/DMC/.gitignore"  and not the  "3K04-Pacemaker/.gitignore")
     
 # Project Description

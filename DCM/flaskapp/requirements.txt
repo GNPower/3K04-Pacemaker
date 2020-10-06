@@ -1,0 +1,2 @@
+#python -u pip install requirements.txt
+Flask==1.1.2
