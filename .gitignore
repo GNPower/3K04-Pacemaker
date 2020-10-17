@@ -550,4 +550,10 @@ MigrationBackup/
 !.vscode/extensions.json
 *.code-workspace
 
+### pytest ###
+.pytest_cache/
+.pytest_cache/*
+
+
+### keep directoryies ###
 !*.keep

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta title="Pacemaker UI"> <!--Come up with cool name here-->
+        <meta name="description" content="DCM User Interface For Communication And Control Of The Pacemaker">
+        <meta name="author" content="Graham Power">
+        <meta name="author" content="Hamza Ashraf">
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- child template -->
+            {% block content %}{% endblock %}
+
+            <!-- errors -->
+            {% if error %}
+                <h3 class="error">Login Error:</h3>
+                <br>
+                <p class="error"> {{ error }}</p>
+            {% endif %}
+
+            <!-- messages -->
+            {% for message in get_flashed_messages() %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    </body>
+</html>
