@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% include "nav.html" %}
+
+<script>
+    document.getElementById("parameters").classList.add("active");
+</script>
+
+<div class="justify-center">
+    <h1>Pacemaker Parameters For {{ username }}</h1>
+</div>
+
+<form action="" method="post">
+
+    
+    {% for parameter in parameters %}
+        {% with name_spaced=parameter, value=parameters[parameter] %}
+            {% include "parameter_form_item.html" %}
+        {% endwith %}
+    {% endfor %}
+    
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Save">
+    </div>
+</form>	
+
+{% endblock %}

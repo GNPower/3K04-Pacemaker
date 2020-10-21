@@ -11,3 +11,14 @@ def login_required(f):
             flash('You need to login first.')
             return redirect(url_for('login'))
     return wrap
+
+#login required decorator
+def logout_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            session.pop('logged_in', None)
+            return f(*args, **kwargs)
+        else:
+            return f(*args, **kwargs)
+    return wrap

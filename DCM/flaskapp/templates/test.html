@@ -21,23 +21,24 @@
 
         <div class="container main">
             <!-- child template -->
-            {% block content %}{% endblock %}
-
-            <!-- errors -->
-            {% if error %}
-                <div class="justify-center">
-                    <h3 class="error">Login Error:</h3>
-                    <br>
-                    <p class="error"> {{ error }}</p>
+            
+            <div class="justify-center nav">
+                <a href="{{ url_for('user_page') }}" class="active">Home</a>
+                <a href="{{ url_for('user_parameters') }}">My Parameters</a>
+                <a href="{{ url_for('user_connect') }}">Connect A Pacemaker</a>
+                <div class="nav-right">
+                    <a href="{{ url_for('logout') }}">Logout</a>
                 </div>
-            {% endif %}
+            </div>
+            
+            <div class="justify-center">
+                <h1>Basic Flask App For 3K04 Pacemaker Group</h1>
+                <img src="../static/logo.png" alt="Heart Image" width="500px" height="500px">
+                <br>
+                <p>This is the user specific page for the Pacemaker DCM UI</p>
+            </div>
 
-            <!-- messages -->
-            {% for message in get_flashed_messages() %}
-                <div class="justify-center">
-                    {{ message }}
-                </div>
-            {% endfor %}
+
         </div>
     </body>
 </html>
