@@ -9,7 +9,7 @@ def login_required(f):
             return f(*args, **kwargs)
         else:
             flash('You need to login first.')
-            return redirect(url_for('login'))
+            return redirect(url_for('home'))
     return wrap
 
 #login required decorator
