@@ -13,6 +13,7 @@ def init_db(file):
     or create it if one doesn't already exist.
 
     Args:
+    
         file (str): The file location of the database, given relative to the ~/PacemakerProject/DCM/flaskapp/data directory
 
     Returns:
