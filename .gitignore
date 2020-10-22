@@ -543,6 +543,7 @@ MigrationBackup/
 .ionide/
 
 ### vscode ###
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -550,4 +551,13 @@ MigrationBackup/
 !.vscode/extensions.json
 *.code-workspace
 
+### pytest ###
+.pytest_cache/
+.pytest_cache/*
+
+### python virtual environment ###
+.venv
+
+
+### keep directoryies ###
 !*.keep

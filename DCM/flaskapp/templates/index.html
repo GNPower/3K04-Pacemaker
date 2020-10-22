@@ -1,0 +1,97 @@
+<!--
+	NOTE: Login modal used in this project is sourced from Tutorial Republic's public code snippets in accordance with their Copyright, given below.
+
+	Copyright ©2020 Tutorial Republic
+	The following terms and conditions for use govern all use of the Tutorial Republic website and all content, features, and activities available at or through the Website.
+
+	-The contents displayed on the pages of this website, including all information, illustrations, artwork and other graphic materials are the property of Tutorial Republic.
+	-You agree not to reproduce, publish or circulate any such material in any way, shape, or form to any third party without the written permission of Tutorial Republic.
+	-You are free to use the examples/code snippets for personal or commercial projects. Fair usages like using the examples and code snippets on online forums, blog posts or 
+	 in books for reference purpose are also permitted. But you are not allowed to redistribute them without prior written permission from Tutorial Republic.
+	
+	Failure to do so may give rise to a claim for damages and/or be a criminal offence.
+
+	Title:			Elegant Modal Login Form With Icons
+	Author(s):		Tutorial Republic
+	Date:			2020-10-18
+	Availability	https://www.tutorialrepublic.com/codelab.php?topic=bootstrap-3&file=elegant-modal-login-form-with-icons
+-->
+
+{% extends "base.html" %}
+{% block content %}
+
+<div class="justify-center">
+    <h1>Basic Flask App For 3K04 Pacemaker Group</h1>
+    <img src="../static/logo.png" alt="Heart Image" width="500px" height="500px">
+    <br>
+    <p>This is a basic homepage for the Pacemaker DCM UI</p>
+    <br>
+</div>
+<div class="text-center">
+	<!-- Button HTML (to Trigger Modal) -->
+	<a href="#loginModal" class="trigger-btn" data-toggle="modal">Click Here To Login</a>
+</div>
+
+<!-- Login Modal HTML -->
+<div id="loginModal" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<div class="modal-header">				
+				<h4 class="modal-title">User Login</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form action="" method="post">
+					<div class="form-group">
+						<i class="fa fa-user"></i>
+						<input type="text" class="form-control" placeholder="Username" required="required" name="username" value="{{ request.form.username }}">
+					</div>
+					<div class="form-group">
+						<i class="fa fa-lock"></i>
+						<input type="password" class="form-control" placeholder="Password" required="required" name="password" value="{{ request.form.password }}">					
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
+					</div>
+				</form>				
+				
+			</div>
+			<div class="modal-footer">
+				<a href="#accountModal" data-toggle="modal">Create An Account</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Account Creation Modal HTML -->
+<div id="accountModal" class="modal fade">
+	<div class="modal-dialog modal-login">
+		<div class="modal-content">
+			<div class="modal-header">				
+				<h4 class="modal-title">Account Creation</h4>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form action="" method="post">
+					<div class="form-group">
+						<i class="fa fa-user"></i>
+						<input type="text" class="form-control" placeholder="Username" required="required" name="username" value="{{ request.form.username }}">
+					</div>
+					<div class="form-group">
+						<i class="fa fa-lock"></i>
+						<input type="password" class="form-control" placeholder="Password" required="required" name="password" value="{{ request.form.password }}">					
+					</div>
+					<div class="form-group">
+						<i class="fa fa-lock"></i>
+						<input type="password" class="form-control" placeholder="Confirm Password" required="required" name="confirmpassword" value="{{ request.form.confirmpassword }}">					
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary btn-block btn-lg" value="Create Account">
+					</div>
+				</form>								
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

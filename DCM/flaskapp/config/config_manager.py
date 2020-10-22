@@ -1,11 +1,12 @@
-import configparser, os, logging, datetime
+import configparser, os, logging, datetime, inspect
 
 logger = None
 
 def init_config(cfg_files=[]):
     cfg_files.append('application.ini')
     
-    thisfolder = os.path.dirname(os.path.abspath(__file__))
+    #thisfolder = os.path.dirname(os.path.abspath(__file__))
+    thisfolder = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     cfg_files[:] = [os.path.join(thisfolder, filename) for filename in cfg_files]
 
     config = configparser.ConfigParser()
@@ -18,7 +19,8 @@ def init_logging(config):
     if logger != None:
         return logger
 
-    thisfolder = os.path.dirname(os.path.abspath(__file__))
+    #thisfolder = os.path.dirname(os.path.abspath(__file__))
+    thisfolder = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     logdir = os.path.join(thisfolder, '../logs/')
     if not os.path.exists(logdir):
         os.makedirs(logdir)

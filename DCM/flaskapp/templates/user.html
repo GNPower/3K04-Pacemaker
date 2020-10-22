@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% include "nav.html" %}
+
+<script>
+    document.getElementById("home").classList.add("active");
+</script>
+
+<div class="justify-center">
+    <h1>Basic Flask App For 3K04 Pacemaker Group</h1>
+    <img src="../static/logo.png" alt="Heart Image" width="500px" height="500px">
+    <br>
+    <p>This is the user welcome page for the Pacemaker DCM UI</p>
+</div>
+
+{% endblock %}
