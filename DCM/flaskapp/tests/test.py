@@ -11,31 +11,31 @@ class FlaskTestCase(unittest.TestCase):
     #testing if the app /login route is accessable
     def test_login(self):
         tester = app.test_client(self)
-        response = tester.get('/login', content_type='html/text')
+        response = tester.get('/', content_type='html/text')
         self.assertEqual(response.status_code, 200)
 
     #testing if the app /login route is populated
     def test_login_loads(self):
         tester = app.test_client(self)
-        response = tester.get('/login', content_type='html/text')
-        self.assertTrue(b'Login:' in response.data)
+        response = tester.get('/', content_type='html/text')
+        self.assertTrue(b'Click Here To Login' in response.data)
 
     #ensure the login behaves correctly with corrent credentials
     def test_login_correct(self):
         tester = app.test_client(self)
-        response = tester.post('/login', data=dict(username='admin', password='admin'), follow_redirects=True)
+        response = tester.post('/', data=dict(username='testuser', password='test'), follow_redirects=True)
         self.assertTrue(b'You were just logged in!' in response.data)
 
     #ensure the login behaves correctly with incorrect credentials
     def test_login_incorrect(self):
         tester = app.test_client(self)
-        response = tester.post('/login', data=dict(username='stuff', password='bob'), follow_redirects=True)
+        response = tester.post('/', data=dict(username='stuff', password='bob'), follow_redirects=True)
         self.assertTrue(b'Invalid credentials. Please try agian.' in response.data)
 
     #ensure the logout behaves correctly
     def test_logout_works(self):
         tester = app.test_client(self)
-        tester.post('/login', data=dict(username='admin', password='admin'), follow_redirects=True)
+        tester.post('/', data=dict(username='testuser', password='test'), follow_redirects=True)
         response = tester.get('/logout', follow_redirects=True)
         self.assertTrue(b'You were just logged out!' in response.data)
 
