@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta title="Pacemaker UI"> <!--Come up with cool name here-->
+        <meta name="description" content="DCM User Interface For Communication And Control Of The Pacemaker">
+        <meta name="author" content="Graham Power">
+        <meta name="author" content="Hamza Ashraf">
+        
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/styles.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        
+
+        <div class="container main">
+            <!-- child template -->
+            {% block content %}{% endblock %}
+
+            <!-- errors -->
+            {% if error %}
+                <div class="justify-center">
+                    <h3 class="error">Login Error:</h3>
+                    <br>
+                    <p class="error"> {{ error }}</p>
+                </div>
+            {% endif %}
+
+            <!-- messages -->
+            {% for message in get_flashed_messages() %}
+                <div class="justify-center">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

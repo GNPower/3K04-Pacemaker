@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta title="Pacemaker UI"> <!--Come up with cool name here-->
+        <meta name="description" content="DCM User Interface For Communication And Control Of The Pacemaker">
+        <meta name="author" content="Graham Power">
+        <meta name="author" content="Hamza Ashraf">
+        
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../static/css/styles.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        
+
+        <div class="container main">
+            <!-- child template -->
+            
+            <div class="justify-center nav">
+                <a href="{{ url_for('user_page') }}" class="active">Home</a>
+                <a href="{{ url_for('user_parameters') }}">My Parameters</a>
+                <a href="{{ url_for('user_connect') }}">Connect A Pacemaker</a>
+                <div class="nav-right">
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                </div>
+            </div>
+            
+            <div class="justify-center">
+                <h1>Basic Flask App For 3K04 Pacemaker Group</h1>
+                <img src="../static/logo.png" alt="Heart Image" width="500px" height="500px">
+                <br>
+                <p>This is the user specific page for the Pacemaker DCM UI</p>
+            </div>
+
+
+        </div>
+    </body>
+</html>
