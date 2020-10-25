@@ -8,6 +8,7 @@ NOTE:   Users are expected to be returned as lists, whose entries are in the fol
             AtrialRefractoryPeriod, VentricularAmplitude, VentricularPulseWidth, VentricularRefractoryPeriod ]
 """
 
+
 client = pymongo.MongoClient('localhost', 27017)
 db = client.pacemakerDB
 
@@ -23,6 +24,7 @@ def init_db(port):
 
 # adding users to the db upon registration
 def insert_user(username, password):
+
     """Insert User Function
 
     To insert a new user into the database. The new users username and password are required upon creation,
@@ -37,6 +39,7 @@ def insert_user(username, password):
     # registering the user
     user = {
         "id": uuid.uuid4().hex,
+
         "username": username,
         "password": password,
     }
@@ -52,6 +55,7 @@ def insert_user(username, password):
 
 
 def find_user(username=None, password=None):
+
     """Find User Function
 
     To find a user in the database. Can be given either a username, or the username and the password. Should return
@@ -73,10 +77,13 @@ def find_user(username=None, password=None):
     elif (username is not None):
         cursor = db.users.find_one({"username": username})
 
+
     return cursor
 
 
+
 def get_user(id):
+
     """Get User By ID
 
     To get a user by ID from the database. User IDs should be unique as to ensure only one user can ever be 
@@ -93,7 +100,9 @@ def get_user(id):
     return db.users.find_one({"_id": id})
 
 
+
 def get_rows():
+
     """Gets The Number Of Users Stored In The Database
 
     Args:
@@ -104,6 +113,7 @@ def get_rows():
 
     """
     total_users = 0
+
     cursor = db.users.find({})
     for document in cursor:
         total_users += 1
@@ -111,7 +121,9 @@ def get_rows():
     return total_users
 
 
+
 def update_pacemaker_parameters(id, values):
+
     """Update Pacemaker Parameters
 
     Given a list of pacemaker parameters, whos entries are in the same order as the user list defined in the NOTE,

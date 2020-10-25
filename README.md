@@ -5,9 +5,15 @@ This is the Github repository for our 3K04 Pacemaker Group
 
 ### Getting Started
 - Clone this repository to your working environment on your computer
-	- If you are using command line copy this text:
-	git clone https://github.com/GNPower/3K04-Pacemaker.git
+	- If you are using command line copy this text:  
+	git clone https://github.com/GNPower/3K04-Pacemaker.git  
 	- If you are using an IDE, you can google how to clone a repo using that IDE
+- Checkout your branch to begin development
+	- If you are using command line copy this text:  
+	git fetch origin  
+	git checkout -b dev origin/{YOUR_NAME_HERE}  
+	- You are now setup to develop on your branch (which is called 'dev' on your local machine)
+	- If you are using an IDE, you can google how to checkout a branch using that IDE
 - Take a look through the files to get a feel for how everyhting is set up
 	- ~/3K04-Pacemaker is the base directory for this project
 	- ~/3K04-Pacemaker/DCM is the base directory for the GUI and other DCM stuff
