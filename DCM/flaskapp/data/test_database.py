@@ -8,9 +8,13 @@ NOTE:   Users are expected to be returned as lists, whose entries are in the fol
             AtrialRefractoryPeriod, VentricularAmplitude, VentricularPulseWidth, VentricularRefractoryPeriod ]
 """
 
+client = pymongo.MongoClient('localhost', 27017)
+db = client.pacemakerDB
 
 # Accessing the db, or initializing it if it does not exist
 # port - default mongodb port is 27017 when initializing on your machine
+
+
 def init_db(port):
     client = pymongo.MongoClient('localhost', port)
     db = client.pacemakerDB
@@ -18,7 +22,7 @@ def init_db(port):
 
 
 # adding users to the db upon registration
-def insert_user(db, username, password):
+def insert_user(username, password):
     """Insert User Function
 
     To insert a new user into the database. The new users username and password are required upon creation,
@@ -32,7 +36,7 @@ def insert_user(db, username, password):
     """
     # registering the user
     user = {
-        "_id": uuid.uuid4().hex,
+        "id": uuid.uuid4().hex,
         "username": username,
         "password": password,
     }
@@ -47,7 +51,7 @@ def insert_user(db, username, password):
     db.users.insert_one(user)
 
 
-def find_user(db, username=None, password=None):
+def find_user(username=None, password=None):
     """Find User Function
 
     To find a user in the database. Can be given either a username, or the username and the password. Should return
@@ -63,15 +67,16 @@ def find_user(db, username=None, password=None):
 
     """
     if (username is not None and password is not None):
-        cursor = db.users.find(
-            {{"username": username}, {"password": password}})
+        cursor = db.users.find_one(
+            {"username": username, "password": password})
+        print(cursor)
     elif (username is not None):
-        cursor = db.users.find({"username": username})
+        cursor = db.users.find_one({"username": username})
 
     return cursor
 
 
-def get_user(db, id):
+def get_user(id):
     """Get User By ID
 
     To get a user by ID from the database. User IDs should be unique as to ensure only one user can ever be 
@@ -88,7 +93,7 @@ def get_user(db, id):
     return db.users.find_one({"_id": id})
 
 
-def get_rows(db):
+def get_rows():
     """Gets The Number Of Users Stored In The Database
 
     Args:
@@ -98,6 +103,7 @@ def get_rows(db):
         (int): The number of users in the database
 
     """
+    total_users = 0
     cursor = db.users.find({})
     for document in cursor:
         total_users += 1
@@ -105,7 +111,7 @@ def get_rows(db):
     return total_users
 
 
-def update_pacemaker_parameters(db, id, values):
+def update_pacemaker_parameters(id, values):
     """Update Pacemaker Parameters
 
     Given a list of pacemaker parameters, whos entries are in the same order as the user list defined in the NOTE,
@@ -119,11 +125,11 @@ def update_pacemaker_parameters(db, id, values):
     """
     # mongo integration
     db.users.update({'_id': id}, {
-        '$set': {'LowerRateLimit': 0,
-                 'UpperRateLimit': 1,
-                 'AtrialAmplitude': 2,
-                 'AtrialPulseWidth': 3,
-                 'AtrialRefractoryPeriod': 4,
-                 'VenctricularAmplitude': 5,
-                 'VentricularPulseWidth': 6,
-                 'VentricularRefractoryPeriod': 7}})
+        '$set': {'Parameters': {'LowerRateLimit': values[0],
+                                'UpperRateLimit': values[1],
+                                'AtrialAmplitude': values[2],
+                                'AtrialPulseWidth': values[3],
+                                'AtrialRefractoryPeriod': values[4],
+                                'VenctricularAmplitude': values[5],
+                                'VentricularPulseWidth': values[6],
+                                'VentricularRefractoryPeriod': values[7]}}})
