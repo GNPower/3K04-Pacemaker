@@ -1,3 +1,12 @@
+    """
+    Main Application
+    -------------------------
+    The main implementation of the DCM flaskapp.
+    Handles rendering off all the endpoints as well
+    as communication between the frontend and 
+    backend.
+    """
+
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from threading import Timer
 import webbrowser, sqlite3
