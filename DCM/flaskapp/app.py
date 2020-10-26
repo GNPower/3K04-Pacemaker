@@ -9,12 +9,13 @@
 
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from threading import Timer
-import webbrowser, sqlite3
+import webbrowser
+import sqlite3
 
 from config.config_manager import init_logging, init_config
 from config.decorators import login_required, logout_required
 from data.user import User
-from data.database import init_db
+from data.test_database import init_db
 
 
 config = init_config()
@@ -34,7 +35,8 @@ def home():
         print(request.form)
         if (len(request.form) > 2):
             if(request.form['password'] == request.form['confirmpassword']):
-                result = user.create_account(request.form['username'], request.form['password'])
+                result = user.create_account(
+                    request.form['username'], request.form['password'])
                 if result:
                     return redirect(url_for('user_page'))
                 else:
@@ -57,12 +59,15 @@ def home():
 def user_page():
     return render_template('user.html')
 
+
 @app.route('/user/parameters', methods=['GET', 'POST'])
 @login_required
 def user_parameters():
     if request.method == 'POST':
-        user.update_all_pacemaker_parameters({j: {k: v for k, v in dict(request.form).items() if v}.get(j, user.get_pacemaker_parameters()[j]) for j in user.get_pacemaker_parameters()})
+        user.update_all_pacemaker_parameters({j: {k: v for k, v in dict(request.form).items() if v}.get(
+            j, user.get_pacemaker_parameters()[j]) for j in user.get_pacemaker_parameters()})
     return render_template('user_parameters.html', username=user.get_username(), parameters=user.get_pacemaker_parameters())
+
 
 @app.route('/user/connect')
 @login_required
@@ -79,10 +84,12 @@ def logout():
 
 
 def open_browser():
-    webbrowser.open_new('http://' + config.get('HostSelection','host.address') + ':' + config.get('HostSelection', 'host.port') + "/")
+    webbrowser.open_new('http://' + config.get('HostSelection', 'host.address') +
+                        ':' + config.get('HostSelection', 'host.port') + "/")
 
 
 if __name__ == '__main__':
     Timer(1, open_browser).start()
-    #WARNING: Change 'use_reloader' and 'debug' to False before shipping release
-    app.run(debug=True, host=config.get('HostSelection', 'host.address'), port=config.get('HostSelection', 'host.port'), threaded=False, use_reloader=False)
+    # WARNING: Change 'use_reloader' and 'debug' to False before shipping release
+    app.run(debug=True, host=config.get('HostSelection', 'host.address'), port=config.get(
+        'HostSelection', 'host.port'), threaded=False, use_reloader=False)

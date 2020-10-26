@@ -1,6 +1,7 @@
 from flask import session
 
-from .database import find_user, init_db, insert_user, get_rows, update_pacemaker_parameters
+from .test_database import find_user, init_db, insert_user, get_rows, update_pacemaker_parameters
+
 
 class User:
 
@@ -21,25 +22,28 @@ class User:
         self.id = ''
         self.username = ''
         self.password = ''
-        self.conn, self.cursor = init_db(self.config.get('Database', 'db.local-uri'))
 
     def create_account(self, username, password):
-        conflicts = find_user(self.cursor, username=username)
-        num_users = get_rows(self.cursor)
-        if conflicts or num_users[0][0] >= 10:
+        conflicts = find_user(username=username)
+        num_users = get_rows()
+        if conflicts or num_users >= 10:
             return False
-        insert_user(self.conn, self.cursor, username, password)
+        insert_user(username, password)
         self.login(username, password)
         return True
 
-
     def login(self, username, password):
-        result = find_user(self.cursor, username=username, password=password)        
+        print('function called')
+        result = find_user(username=username, password=password)
+        print(result)
+        print('that was the result')
         if result:
-            self.parameters.update(zip(self.parameters, result[0][3:]))
-            self.id = result[0][0]
-            self.username = result[0][1]
-            self.password = result[0][2]
+            print(result['id'])
+            # self.parameters.update(zip(self.parameters, result[0][3:]))
+            # self.id = result.id
+            self.id = result['id']
+            self.username = result['username']
+            self.password = result['password']
             session['logged_in'] = True
 
     def logout(self):
@@ -62,11 +66,12 @@ class User:
         if not key in self.parameters:
             return False
         self.parameters[key] = value
-        update_pacemaker_parameters(self.conn, self.cursor, self.id, self.parameters.values())
-
+        update_pacemaker_parameters(
+            self.id, self.parameters.values())
 
     def update_all_pacemaker_parameters(self, values):
         if len(values) != self.num_parameters:
             return False
         self.parameters.update(zip(self.parameters, values))
-        update_pacemaker_parameters(self.conn, self.cursor, self.id, self.parameters.values())
+        update_pacemaker_parameters(
+            self.id, self.parameters.values())
