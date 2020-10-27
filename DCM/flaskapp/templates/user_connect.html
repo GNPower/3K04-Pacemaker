@@ -7,11 +7,25 @@
     document.getElementById("connect").classList.add("active");
 </script>
 
-<div class="justify-center">
-    <h1>Basic Flask App For 3K04 Pacemaker Group</h1>
-    <img src="../static/logo.png" alt="Heart Image" width="500px" height="500px">
-    <br>
-    <p>This is the user pacemaker connection page for the Pacemaker DCM UI</p>
-</div>
+<form action="" method="post" class="justify-center" style="padding-top: 1rem;" name="pacemode">
+            
+                
+    <select name="Pacing Mode" id="pacemode" class="btn btn-danger dropdown" id="pacemode">
+        <option value="" disabled {% if mode=="None" %} selected="selected" {% endif %}>Select Pacing Mode</option>
+        <option value="AOO" {% if mode=="AOO" %} selected="selected" {% endif %}>AOO</option>
+        <option value="VOO" {% if mode=="VOO" %} selected="selected" {% endif %}>VOO</option>
+        <option value="AAI" {% if mode=="AAI" %} selected="selected" {% endif %}>AAI</option>
+        <option value="VVI" {% if mode=="VVI" %} selected="selected" {% endif %}>VVI</option>
+    </select>
+</form>
+
+<script>
+
+    document.getElementById("pacemode").addEventListener("change", function (event) {
+        console.log('testing 1 2 3...');
+        document.forms["pacemode"].submit();
+    });
+
+</script>
 
 {% endblock %}

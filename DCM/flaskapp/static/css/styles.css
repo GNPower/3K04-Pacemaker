@@ -25,6 +25,11 @@ body {
     text-decoration: none;
     font-size: 17px;
 }
+.nav img {
+    float: right;
+    text-align: center;
+    padding: 14px, 16px;
+}
 .active, .nav a:hover {
     background-color: #cf7d80;
     color: white;

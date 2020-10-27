@@ -14,6 +14,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
     </head>
 
     <body>
@@ -23,20 +24,37 @@
             <!-- child template -->
             
             <div class="justify-center nav">
-                <a href="{{ url_for('user_page') }}" class="active">Home</a>
+                <a href="{{ url_for('user_page') }}">Home</a>
                 <a href="{{ url_for('user_parameters') }}">My Parameters</a>
                 <a href="{{ url_for('user_connect') }}">Connect A Pacemaker</a>
                 <div class="nav-right">
-                    <a href="{{ url_for('logout') }}">Logout</a>
+                    <img src="../static/no-connection.png" alt="Connection Status" width="24px", height="24px">
+                    <a href="{{ url_for('logout') }}">Logout</a>                    
                 </div>
             </div>
             
-            <div class="justify-center">
-                <h1>Basic Flask App For 3K04 Pacemaker Group</h1>
-                <img src="../static/logo.png" alt="Heart Image" width="500px" height="500px">
-                <br>
-                <p>This is the user specific page for the Pacemaker DCM UI</p>
-            </div>
+            <form action="" method="post" class="justify-center" style="padding-top: 1rem;" name="pacemode">
+            
+                
+                <select name="pacemode" class="btn btn-danger dropdown" id="pacemode">
+                    <option value="" disabled selected>Select Pacing Mode</option>
+                    <option value="AOO">AOO</option>
+                    <option value="VOO">VOO</option>
+                </select>
+            </form>
+
+            <script>
+                document.getElementById("connect").classList.add("active");
+            </script>
+            
+            <script>
+            
+                document.getElementById("pacemode").addEventListener("change", function (event) {
+                    console.log('testing 1 2 3...');
+                    document.forms["pacemode"].submit();
+                });
+            
+            </script>
 
 
         </div>

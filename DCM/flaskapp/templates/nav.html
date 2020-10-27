@@ -2,7 +2,8 @@
     <a href="{{ url_for('user_page') }}" id="home">Home</a>
     <a href="{{ url_for('user_parameters') }}" id="parameters">My Parameters</a>
     <a href="{{ url_for('user_connect') }}" id="connect">Connect A Pacemaker</a>
-    <div class="nav-right">
+    <div class="nav-right">        
+        <img src="../static/no-connection.png" alt="Connection Status" width="24px", height="24px">
         <a href="{{ url_for('logout') }}">Logout</a>
     </div>
 </div>
