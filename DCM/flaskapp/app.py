@@ -1,11 +1,11 @@
-    """
-    Main Application
-    -------------------------
-    The main implementation of the DCM flaskapp.
-    Handles rendering off all the endpoints as well
-    as communication between the frontend and 
-    backend.
-    """
+"""
+Main Application
+-------------------------
+The main implementation of the DCM flaskapp.
+Handles rendering off all the endpoints as well
+as communication between the frontend and 
+backend.
+"""
 
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from threading import Timer
@@ -15,7 +15,7 @@ import sqlite3
 from config.config_manager import init_logging, init_config
 from config.decorators import login_required, logout_required
 from data.user import User
-from data.test_database import init_db
+from data.database import init_db
 
 
 config = init_config()
@@ -44,9 +44,10 @@ def home():
             else:
                 error = 'passwords don\'t match. Could not create new account'
         else:
-            user.login(request.form['username'], request.form['password'])
+            print('calling login')
+            user.login(request.form['username'], request.form['password'])            
+            print('login completed')
             if user.is_loggedin():
-                session['logged_in'] = True
                 flash('You were just logged in!')
                 return redirect(url_for('user_page'))
             else:
@@ -64,15 +65,23 @@ def user_page():
 @login_required
 def user_parameters():
     if request.method == 'POST':
-        user.update_all_pacemaker_parameters({j: {k: v for k, v in dict(request.form).items() if v}.get(
-            j, user.get_pacemaker_parameters()[j]) for j in user.get_pacemaker_parameters()})
+        print('FORM:', request.form)
+        updates = {j: {k: v for k, v in dict(request.form).items() if v}.get(j, user.get_pacemaker_parameters()[j]) for j in user.get_pacemaker_parameters()}
+        print('UPDATES:', updates)
+        user.update_all_pacemaker_parameters(updates)
     return render_template('user_parameters.html', username=user.get_username(), parameters=user.get_pacemaker_parameters())
 
 
-@app.route('/user/connect')
+@app.route('/user/connect', methods=['GET', 'POST'])
 @login_required
 def user_connect():
-    return render_template('user_connect.html')
+    mode = 'None'
+    if request.method == 'POST':
+        print(request.form['Pacing Mode'])
+        flash('Pacing Mode Changed To {0}'.format(request.form['Pacing Mode']))
+        mode = request.form['Pacing Mode']
+
+    return render_template('user_connect.html', mode=mode)
 
 
 @app.route('/logout')
