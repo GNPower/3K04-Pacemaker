@@ -1,0 +1,563 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flaskapp.data package &mdash; 3K04-PacemakerProject DCM (Group 10)  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="flaskapp.tests package" href="flaskapp.tests.html" />
+    <link rel="prev" title="flaskapp.config package" href="flaskapp.config.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> 3K04-PacemakerProject DCM (Group 10)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">flaskapp</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="flaskapp.html">flaskapp package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="flaskapp.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="flaskapp.config.html">flaskapp.config package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">flaskapp.data package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="flaskapp.tests.html">flaskapp.tests package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="flaskapp.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flaskapp.html#module-flaskapp.app">flaskapp.app module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flaskapp.html#module-flaskapp">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">3K04-PacemakerProject DCM (Group 10)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">flaskapp</a> &raquo;</li>
+        
+          <li><a href="flaskapp.html">flaskapp package</a> &raquo;</li>
+        
+      <li>flaskapp.data package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/flaskapp.data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="flaskapp-data-package">
+<h1>flaskapp.data package<a class="headerlink" href="#flaskapp-data-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-flaskapp.data.database">
+<span id="flaskapp-data-database-module"></span><h2>flaskapp.data.database module<a class="headerlink" href="#module-flaskapp.data.database" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="database-library">
+<h3>Database Library<a class="headerlink" href="#database-library" title="Permalink to this headline">¶</a></h3>
+<p>A collection of functions capable of interacting with
+a sqlite3 single file databse.
+NOTE: Users are returned as lists, whose entries are
+in the following order</p>
+<blockquote>
+<div><p>[ _userid,
+username,
+password,
+LowerRateLimit,
+UpperRateLimit,
+AtrialAmplitude,
+AtrialPulseWidth,
+AtrialRefractoryPeriod,
+VentricularAmplitude,
+VentricularPulseWidth,
+VentricularRefractoryPeriod ]</p>
+</div></blockquote>
+<dl class="py function">
+<dt id="flaskapp.data.database.find_user">
+<code class="sig-prename descclassname">flaskapp.data.database.</code><code class="sig-name descname">find_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">username</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.database.find_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>find_user Given search parameters will find all matching users in the database</p>
+<p>Given one or more of the optional search parameters will return a list of all users
+matching that search criteria. Accepted search parameters are username and password.
+If neither optional parameters are given, the function will return None</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database to search for the user in</p></li>
+<li><p><strong>username</strong> (<em>str</em><em>, </em><em>optional</em>) – The username of the user to search for, defaults to None</p></li>
+<li><p><strong>password</strong> (<em>str</em><em>, </em><em>optional</em>) – The password of the user to search for, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of tuples containing all users matching the search query</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.data.database.get_rows">
+<code class="sig-prename descclassname">flaskapp.data.database.</code><code class="sig-name descname">get_rows</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cursor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.database.get_rows" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_rows Returns the number of rows (.i.e users) in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of tuples containing all items matching the search query</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.data.database.get_user">
+<code class="sig-prename descclassname">flaskapp.data.database.</code><code class="sig-name descname">get_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.database.get_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_user Reuturns a complete users information given their unique ID</p>
+<p>Return type is a list of users. Since the search is done by unique ID,
+this list is garunteed to be either of length one, if a user with matching
+unique ID is found, or zero, if no user with matching unique ID is found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database the user can be found in</p></li>
+<li><p><strong>id</strong> (<em>int</em>) – The unique ID of the user to search for</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of tuples containing all items matching the search query</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.data.database.init_db">
+<code class="sig-prename descclassname">flaskapp.data.database.</code><code class="sig-name descname">init_db</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.database.init_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>init_db Initializes a database located at a given file location</p>
+<p>The file location should be specified relative to the ~/3K04-Pacemaker/DCM/flaskapp/data
+directory. The file should also have a supported sqlite3 extension (.db .db3 .sdb .s3db
+.sqlite .sqlite3) and if the file does not already exist it will be created and
+populated with a new databases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> (<em>str</em>) – The relative file location of the single file sqlite3 database</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A tuple containing the databases connection handler and cursor (sqlite3.Connection, sqlite3.Cursor)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.data.database.insert_user">
+<code class="sig-prename descclassname">flaskapp.data.database.</code><code class="sig-name descname">insert_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conn</span></em>, <em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">username</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.database.insert_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>insert_user Given a username and password of a new user, will insert the user into the database</p>
+<p>This function will create a new entry in the database of a user with the given username and password.
+Only the users username and password are initialized upon user creation, the pacemaker parameters will
+default to None, forcing the user to manually enter their parameters.
+NOTE: This function does no check for conflicting users in the database before inserting a new user.
+It is up to the user of this function to check for conflicts (if they wish to do so) before calling
+this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conn</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Connection</span></code>) – The connection handler for the database to insert a new user into</p></li>
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database to insert a new user into</p></li>
+<li><p><strong>username</strong> (<em>str</em>) – The username for the new user</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – The password for the new user</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.data.database.update_pacemaker_parameters">
+<code class="sig-prename descclassname">flaskapp.data.database.</code><code class="sig-name descname">update_pacemaker_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conn</span></em>, <em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">id</span></em>, <em class="sig-param"><span class="n">values</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.database.update_pacemaker_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>update_pacemaker_parameters Given a list of pacemaker parameters, updates the database values</p>
+<p>When given handler to the database and the unique ID of the user being affected, will update the
+users pacemaker parameters to match the input list.
+NOTE: No complete check is done to ensure the validity of the input, it is up
+to the method user to ensure the lists correctness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conn</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Connection</span></code>) – The connection handler for the database whos contents to change</p></li>
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database whos contents to change</p></li>
+<li><p><strong>id</strong> (<em>int</em>) – The unique ID of the user whos parameters should be changed</p></li>
+<li><p><strong>values</strong> (<em>list</em>) – A list of pacemaker parameters, whos order matches the databases contents</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-flaskapp.data.user">
+<span id="flaskapp-data-user-module"></span><h2>flaskapp.data.user module<a class="headerlink" href="#module-flaskapp.data.user" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="user-class">
+<h3>User Class<a class="headerlink" href="#user-class" title="Permalink to this headline">¶</a></h3>
+<p>The class to represent a user of this application.
+Capable of initializing and accessing the database
+specified in the application configuration, as well
+as loggin in and out, creating an account, and
+modifying the pacemaker parameters of the currently
+logged in user.</p>
+<dl class="py class">
+<dt id="flaskapp.data.user.User">
+<em class="property">class </em><code class="sig-prename descclassname">flaskapp.data.user.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This is a class representation of a simple flask app user</p>
+<p>The class to represent a user of this application.
+Capable of initializing and accessing the database
+specified in the application configuration, as well
+as loggin in and out, creating an account, and
+modifying the pacemaker parameters of the currently
+logged in user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (class:<cite>configparser.ConfigParser</cite>) – A handle to the <code class="xref py py-class docutils literal notranslate"><span class="pre">configparser.ConfigParser</span></code> config
+object initialized by the main application on startup</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="flaskapp.data.user.User.create_account">
+<code class="sig-name descname">create_account</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">username</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.create_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>create_account Creates a new user account</p>
+<p>Checks the database to ensure no user with the same username exists,
+and that the maximum allowable local-agents has not been exceeded
+(defined in the application.ini). If no conflicts exist, a new user
+is created then both inserted into the database and logged in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<em>str</em>) – The username of the new user being created</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – The password of the new user being created</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the account creation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.get_pacemaker_parameters">
+<code class="sig-name descname">get_pacemaker_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.get_pacemaker_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_pacemaker_parameters Returns a dictionary of this users pacemaker parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary of this users pacemaker parameters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.get_username">
+<code class="sig-name descname">get_username</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.get_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_username Returns this users username</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>This users username</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.is_loggedin">
+<code class="sig-name descname">is_loggedin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.is_loggedin" title="Permalink to this definition">¶</a></dt>
+<dd><p>is_loggedin Checks if this user is logged in</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the user is logged in, False otherwise</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.login">
+<code class="sig-name descname">login</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">username</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>login Attempts to log a user in, given their username and password</p>
+<p>Searches the database to check if the user with matching username and
+password exists. No conflict management (i.e. ensuring only one user
+matches that username) is necessary since it is handled on account
+creation. If a matching user is found the <code class="xref py py-class docutils literal notranslate"><span class="pre">data.user</span></code> is updated
+with that users information and the user is logged in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<em>str</em>) – The username of the user trying to login</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – The password of the user trying to login</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.logout">
+<code class="sig-name descname">logout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>logout Logs out the currently logged in user</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="flaskapp.data.user.User.num_parameters">
+<code class="sig-name descname">num_parameters</code><em class="property"> = 8</em><a class="headerlink" href="#flaskapp.data.user.User.num_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="flaskapp.data.user.User.parameters">
+<code class="sig-name descname">parameters</code><em class="property"> = {'Atrial Amplitude': None, 'Atrial Pulse Width': None, 'Atrial Refractory Period': None, 'Lower Rate Limit': None, 'Upper Rate Limit': None, 'Ventricular Amplitude': None, 'Ventricular Pulse Width': None, 'Ventricular Refractory Period': None}</em><a class="headerlink" href="#flaskapp.data.user.User.parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.update_all_pacemaker_parameters">
+<code class="sig-name descname">update_all_pacemaker_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.update_all_pacemaker_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>update_all_pacemaker_parameters Updates all pacemaker parameters</p>
+<p>Given a dictionary of pacemaker parameters, in the same order as the values of
+the pacemaker parameters dictionary, will update every value of the dictionary.
+NOTE: No complete check is done to ensure the validity of the input, it is up
+to the method user to ensure the dictionaries correctness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> (<em>dict</em>) – A dictionary of the updated pacemaker parameters</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the pacemaker parameters were updated sucessfully, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.update_pacemaker_parameter">
+<code class="sig-name descname">update_pacemaker_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.update_pacemaker_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>update_pacemaker_parameter Updates a single pacemaker parameter</p>
+<p>Given a valid key (one already contained in the pacemaker parameters
+dictionary), will update the value of that key with the passes in
+value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – A key already contained in the pacemaker parameters dictionary</p></li>
+<li><p><strong>value</strong> (<em>int</em>) – An updated value for the associated key</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the parameter was sucessfully updated, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-flaskapp.data">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-flaskapp.data" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="flaskapp.tests.html" class="btn btn-neutral float-right" title="flaskapp.tests package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="flaskapp.config.html" class="btn btn-neutral float-left" title="flaskapp.config package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Graham Power, Hamza Ashraf
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
