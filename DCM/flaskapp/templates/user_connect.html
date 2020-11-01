@@ -19,10 +19,107 @@
     </select>
 </form>
 
+{% if mode != "None" %}
+<form action="" method="post" id="param-form">
+
+    <!-- <script>
+        var form = document.getElementById('param-form');
+
+        var input = document.createElement('oldval');
+        input.setAttribute('name', 'OldMode');
+        input.setAttribute('value', {{ mode }});
+        input.setAttribute('type', "hidden");
+
+        form.appendChild(input);
+    </script> -->
+    <input type="text" placeholder="{{ mode }}" name="Mode" value="{{ mode }}" style="display: none;">
+
+    <div class="form-group">
+        <p>Lower Rate Limit:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Lower Rate Limit'] }}" name="Lower Rate Limit" value="{{ request.form['Lower Rate Limit'] }}">
+    </div>
+    <div class="form-group">
+        <p>Upper Rate Limit:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Upper Rate Limit'] }}" name="Upper Rate Limit" value="{{ request.form['Upper Rate Limit'] }}">
+    </div>
+    
+    {% if mode == "AOO" %}
+    <div class="form-group">
+        <p>Atrial Amplitude:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Atrial Amplitude'] }}" name="Atrial Amplitude" value="{{ request.form['Atrial Amplitude'] }}">
+    </div>
+    <div class="form-group">
+        <p>Atrial Pulse Width:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Atrial Pulse Width'] }}" name="Atrial Pulse Width" value="{{ request.form['Atrial Pulse Width'] }}">
+    </div>
+
+        <!--
+            atrial amplitude
+            atrial pulse width
+        -->
+    {% endif %}
+    {% if mode == "VOO" %}
+    <div class="form-group">
+        <p>Ventricular Amplitude:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Ventricular Amplitude'] }}" name="Ventricular Amplitude" value="{{ request.form['Ventricular Amplitude'] }}">
+    </div>
+    <div class="form-group">
+        <p>Ventricular Pulse Width:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Ventricular Pulse Width'] }}" name="Ventricular Pulse Width" value="{{ request.form['Ventricular Pulse Width'] }}">
+    </div>
+        <!--
+            ventricular amplitude
+            ventricular pulse width
+        -->
+    {%endif %}
+    {% if mode == "AAI" %}
+    <div class="form-group">
+        <p>Atrial Amplitude:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Atrial Amplitude'] }}" name="Atrial Amplitude" value="{{ request.form['Atrial Amplitude'] }}">
+    </div>
+    <div class="form-group">
+        <p>Atrial Pulse Width:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Atrial Pulse Width'] }}" name="Atrial Pulse Width" value="{{ request.form['Atrial Pulse Width'] }}">
+    </div>
+    <div class="form-group">
+        <p>Atrial Refractory Period:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Atrial Refractory Period'] }}" name="Atrial Refractory Period" value="{{ request.form['Atrial Refractory Period'] }}">
+    </div>
+        <!--
+            atrial amplitude
+            atrial pulse width
+            atrial refractory period            
+        -->
+    {% endif %}
+    {% if mode == "VVI" %}
+    <div class="form-group">
+        <p>Ventricular Amplitude:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Ventricular Amplitude'] }}" name="Ventricular Amplitude" value="{{ request.form['Ventricular Amplitude'] }}">
+    </div>
+    <div class="form-group">
+        <p>Ventricular Pulse Width:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Ventricular Pulse Width'] }}" name="Ventricular Pulse Width" value="{{ request.form['Ventricular Pulse Width'] }}">
+    </div>
+    <div class="form-group">
+        <p>Ventricular Refractory Period:</p>
+        <input type="number" class="form-control" placeholder="{{ parameters['Ventricular Refractory Period'] }}" name="Ventricular Refractory Period" value="{{ request.form['Ventricular Refractory Period'] }}">
+    </div>
+        <!--
+            ventricilar amplitude
+            ventricular pulse width
+            ventricular refractory period
+        -->
+    {%endif %}
+    
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Save">
+    </div>
+</form>	
+{% endif %}
+
 <script>
 
     document.getElementById("pacemode").addEventListener("change", function (event) {
-        console.log('testing 1 2 3...');
         document.forms["pacemode"].submit();
     });
 

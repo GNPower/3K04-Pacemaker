@@ -27,7 +27,12 @@ def init_config(cfg_files=[]):
     :return: A handler for the applications configuration manager
     :rtype: :class:`configparser.ConfigParser`
     """
-    cfg_files.append('application.ini')
+    if type(cfg_files) == str:
+        cfg_files = [cfg_files]
+    if 'application.ini' in cfg_files:
+        cfg_files.remove('application.ini')
+    cfg_files.insert(0, 'application.ini')
+
     
     thisfolder = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
     cfg_files[:] = [os.path.join(thisfolder, filename) for filename in cfg_files]
