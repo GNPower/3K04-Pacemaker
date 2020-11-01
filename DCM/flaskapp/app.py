@@ -116,6 +116,7 @@ def user_parameters():
         updates = {j: {k: v for k, v in dict(request.form).items() if v}.get(j, user.get_pacemaker_parameters()[j]) for j in user.get_pacemaker_parameters()}
         #print('UPDATES:', updates)
         #updates all the pacemaker parameters with the newly generated list
+        logger.info('Pacemaker Parameters Updated: {0}'.format(updates))
         user.update_all_pacemaker_parameters(updates)
     return render_template('user_parameters.html', username=user.get_username(), parameters=user.get_pacemaker_parameters())
 
@@ -140,12 +141,21 @@ def user_connect():
     #This is an attempt to avoid the user programming the pacemaker in a mode they did not intend
     mode = 'None'
     if request.method == 'POST':
-        #print(request.form['Pacing Mode'])
-        #Flashes the new pacing mode to the user to let them know the applications state has changed
-        flash('Pacing Mode Changed To {0}'.format(request.form['Pacing Mode']))
-        #changes the pacing mode (i.e. the application state)
-        mode = request.form['Pacing Mode']
-    return render_template('user_connect.html', mode=mode)
+        if 'Pacing Mode' in request.form:
+            #print(request.form['Pacing Mode'])
+            #Flashes the new pacing mode to the user to let them know the applications state has changed
+            flash('Pacing Mode Changed To {0}'.format(request.form['Pacing Mode']))
+            #changes the pacing mode (i.e. the application state)
+            mode = request.form['Pacing Mode']
+        else:
+            values = dict(request.form)
+            mode = values.pop('Mode', None)            
+            #create a new parameters dictionary by starting with the original dictionary, and updating its values with the modified value from the post request
+            updates = {j: {k: v for k, v in values.items() if v}.get(j, user.get_pacemaker_parameters()[j]) for j in user.get_pacemaker_parameters()}
+            #updates all the pacemaker parameters with the newly generated list
+            logger.info('Pacemaker Parameters Updated: {0}'.format(updates))
+            user.update_all_pacemaker_parameters(updates)
+    return render_template('user_connect.html', mode=mode, parameters=user.get_pacemaker_parameters())
 
 
 @app.route('/logout')
