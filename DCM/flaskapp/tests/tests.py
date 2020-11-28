@@ -56,10 +56,21 @@ def create_test_config():
     config.write('[Logging]\n\tlogger.level=DEBUG\n\n[Database]\n\tdb.local-uri={0}'.format(test_db_name))
     config.close()
 
+def init_config_and_logger(cfg_files=[]):
+    logging.getLogger().info('Initializing test Config manager and Logger')
+    cfg = Config.getInstance()
+    cfg.reset_config()
+    cfg.read_config(cfg_files)
+    lgr = Logger.getInstance()
+    lgr.reset_logger()
+    lgr.start_logger(cfg)
+
 def test_db_initialization(): 
     logging.getLogger().info('Test DB Initialization:')
     logging.getLogger().info('\tThis test ensures the Database Library can create a new database and that it can load an existing one')
     logging.getLogger().info('\tExpecting active sqlite3 connection and cursor handlers are returned by this test')
+    create_test_config()
+    init_config_and_logger(cfg_files=[test_config_name])
     results = create_db()
     assert len(results) == 2
     assert type(results[0]) == sqlite3.Connection
@@ -70,53 +81,60 @@ def test_user_insertion_and_search():
     logging.getLogger().info('\tThis test ensures that users can be inserted into and searched for in a database')
     logging.getLogger().info('\tExpecting successful function return from creating user (testuser, test_password)')
     logging.getLogger().info('\tExpecting a list cnotaining a correctly initialized single user and None intitialized pacemaker parameters from search for user (testuser, test_password)')
+    create_test_config()
+    init_config_and_logger(cfg_files=[test_config_name])
     results = create_db()
     insert_user(results[0], results[1], 'testuser', 'test_password')
     users = find_user(results[1], username='testuser', password='test_password')
     assert users[0][0] == 1
     assert users[0][1] == 'testuser'
     assert users[0][2] == 'test_password'
-    for parameter in range(3, 9):
-        assert users[0][parameter] == None
 
 def test_get_user():
     logging.getLogger().info('Test Get User:')
     logging.getLogger().info('\tThis test ensure that users can be found in the database when searched for by their known unique ID')
     logging.getLogger().info('\tExpecting a list containing the same user as previously created (1, testuser, test_password) when searching for users with unique ID of 1')
+    create_test_config()
+    init_config_and_logger(cfg_files=[test_config_name])
     results = create_db()
     insert_user(results[0], results[1], 'testuser', 'test_password')
     users = get_user(results[1], 1)
-    assert users[0][0] == 1
-    assert users[0][1] == 'testuser'
-    assert users[0][2] == 'test_password'
-    for parameter in range(3, 9):
-        assert users[0][parameter] == None
+    assert users[0] == 1
+    assert users[1] == 'testuser'
+    assert users[2] == 'test_password'
 
 def test_get_rows():
     logging.getLogger().info('Test Get Rows:')
     logging.getLogger().info('\tThis test ensures the database has the correct number of rows and is capable of returning that number')
     logging.getLogger().info('\tExpecting 5 rows returned after creating a new db and inserting exactly 5 users')
+    create_test_config()
+    init_config_and_logger(cfg_files=[test_config_name])
     results = create_populated_db()
     rows = get_rows(results[1])
-    assert rows[0][0] == 5
+    assert rows == 5
 
 def test_parameter_update():
     logging.getLogger().info('Test Parameter Update:')
     logging.getLogger().info('\tThis test ensures previously created users can have their parameters updated successfully')
     logging.getLogger().info('\tExpecting a user with updated parameters (67, 43, 44, 45, 87, 56, 89, 90) after creating new user and changing their parameters to (67, 43, 44, 45, 87, 56, 89, 90)')
+    create_test_config()
+    init_config_and_logger(cfg_files=[test_config_name])
     results = create_populated_db()
-    initial = get_user(results[1], 3)
-    assert initial[0][3:] == (None, None, None, None, None, None, None, None)
-    update_pacemaker_parameters(results[0], results[1], 3, {43, 44, 45, 56, 67, 89, 87 , 90})
-    updates = get_user(results[1], 3)
-    assert updates[0][3:] == (67, 43, 44, 45, 87, 56, 89, 90)
+    initial = get_user_parameters(results[1], 3)
+    for value in initial[2:]:
+        assert value == None
+    update_pacemaker_parameters(results[0], results[1], 3, ['VVI', 43, 44, 45, 56, 67, 89, 87, 90, 34, 46, 64, 93, 56, 86, 24 ,65, 23, 74, 35])
+    updates = get_user_parameters(results[1], 3)
+    assert updates[1] == 'current'
+    assert updates[2:] == ('VVI', 43, 44, 45, 56, 67, 89, 87, 90, 34, 46, 64, 93, 56, 86, 24 ,65, 23, 74, 35)
     
 def test_config_initializes():
     logging.getLogger().info('Test Config Initializes:')
     logging.getLogger().info('\tThis test ensures the config module can create a config handler containing the correct information when given a config file with known contents')
     logging.getLogger().info('\tExpecting logger.level == DEBUG && db.local-uri == db_test_name_variable')
     create_test_config()
-    results = init_config('test.ini')
+    init_config_and_logger(cfg_files=[test_config_name])
+    results = Config.getInstance()
     assert results.get('Logging', 'logger.level') == 'DEBUG'
     assert results.get('Database', 'db.local-uri') == test_db_name
     assert results.get('Applictation', 'app.secret-key')
@@ -126,12 +144,10 @@ def test_user_initializes():
     logging.getLogger().info('\tThis test ensures a user can be created, and that the created user properly initializes their dependencies (database)')
     logging.getLogger().info('\tExpecting a user containing active connection and cursor handlers to a database matching the test_config specifications')
     create_test_config()
+    init_config_and_logger(cfg_files=[test_config_name])
     create_db()
-    config = init_config(test_config_name)
-    user = User(config)
+    user = User()
     assert user
-    assert user.config == config
-    assert user.conn and user.cursor
 
 
 
@@ -140,16 +156,14 @@ def test_login_acessable():
     logging.getLogger().info('\tThis test ensures that the login state is acessable when the DCM is first created')
     logging.getLogger().info('\tExpecting a rendered login page')
     create_test_config()
+    init_config_and_logger(cfg_files=[test_config_name])
     create_populated_db()
-    test_config = init_config(test_config_name)
-    test_user = User(test_config)
-
+    test_user = User()
     app.app.testing = True
     with app.app.test_client() as client:
-        app.config = test_config
-        app.logger = init_logging(test_config)
         app.user = test_user
         response = client.get('/', content_type='html/text')
+        print(response)
         assert response.status_code == 200
 
 def test_login_populated():
