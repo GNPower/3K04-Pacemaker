@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>flaskapp.data package &mdash; 3K04-PacemakerProject DCM (Group 10)  documentation</title>
+  <title>flaskapp.data package &mdash; Pacemaker DCM (Group 10)  documentation</title>
   
 
   
@@ -35,9 +35,7 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="flaskapp.tests package" href="flaskapp.tests.html" />
-    <link rel="prev" title="flaskapp.config package" href="flaskapp.config.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -51,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> 3K04-PacemakerProject DCM (Group 10)
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Pacemaker DCM (Group 10)
           
 
           
@@ -82,25 +80,23 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">flaskapp</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="flaskapp.html">flaskapp package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="flaskapp.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="flaskapp.config.html">flaskapp.config package</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">flaskapp.data package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="flaskapp.tests.html">flaskapp.tests package</a></li>
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">flaskapp.data package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-flaskapp.data.database">flaskapp.data.database module</a><ul>
+<li><a class="reference internal" href="#database-library">Database Library</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="flaskapp.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="flaskapp.html#module-flaskapp.app">flaskapp.app module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="flaskapp.html#module-flaskapp">Module contents</a></li>
+<li><a class="reference internal" href="#module-flaskapp.data.user">flaskapp.data.user module</a><ul>
+<li><a class="reference internal" href="#user-class">User Class</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-flaskapp.data">Module contents</a></li>
 </ul>
 </li>
 </ul>
-
+</div>
             
           
         </div>
@@ -114,7 +110,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">3K04-PacemakerProject DCM (Group 10)</a>
+          <a href="index.html">Pacemaker DCM (Group 10)</a>
         
       </nav>
 
@@ -144,10 +140,6 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="modules.html">flaskapp</a> &raquo;</li>
-        
-          <li><a href="flaskapp.html">flaskapp package</a> &raquo;</li>
         
       <li>flaskapp.data package</li>
     
@@ -227,10 +219,10 @@ If neither optional parameters are given, the function will return None</p>
 <dd class="field-odd"><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of tuples containing all items matching the search query</p>
+<dd class="field-even"><p>the number of rows contained in the user table of the database</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list</p>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
 </dd></dl>
@@ -238,7 +230,7 @@ If neither optional parameters are given, the function will return None</p>
 <dl class="py function">
 <dt id="flaskapp.data.database.get_user">
 <code class="sig-prename descclassname">flaskapp.data.database.</code><code class="sig-name descname">get_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.database.get_user" title="Permalink to this definition">¶</a></dt>
-<dd><p>get_user Reuturns a complete users information given their unique ID</p>
+<dd><p>get_user Returns a complete users information given their unique ID</p>
 <p>Return type is a list of users. Since the search is done by unique ID,
 this list is garunteed to be either of length one, if a user with matching
 unique ID is found, or zero, if no user with matching unique ID is found.</p>
@@ -250,7 +242,53 @@ unique ID is found, or zero, if no user with matching unique ID is found.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A list of tuples containing all items matching the search query</p>
+<dd class="field-even"><p>A list of tuples containing the contents of the first item matching the search query</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.data.database.get_user_history">
+<code class="sig-prename descclassname">flaskapp.data.database.</code><code class="sig-name descname">get_user_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.database.get_user_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_user_history Returns a complete list of all the users past parameters</p>
+<p>Return type is a list of all past parameters, including the current ones.
+This function has no garunteed list size, as it depends on how many history
+entries the user has made.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database the user can be found in</p></li>
+<li><p><strong>id</strong> (<em>int</em>) – The unique ID of the user to search for</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of all the users past pacemaker parameters</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.data.database.get_user_parameters">
+<code class="sig-prename descclassname">flaskapp.data.database.</code><code class="sig-name descname">get_user_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.database.get_user_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_user_parameters Returns a complete list of the users most recent parameters</p>
+<p>Return type is a list of parameters. Since the search is done by unique ID,
+this list is garunteed to be of constant length, defined by the parameter list
+in the application configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database the user can be found in</p></li>
+<li><p><strong>id</strong> (<em>int</em>) – The unique ID of the user to search for</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of the users current pacemaker parameters</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>list</p>
@@ -335,7 +373,7 @@ modifying the pacemaker parameters of the currently
 logged in user.</p>
 <dl class="py class">
 <dt id="flaskapp.data.user.User">
-<em class="property">class </em><code class="sig-prename descclassname">flaskapp.data.user.</code><code class="sig-name descname">User</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">flaskapp.data.user.</code><code class="sig-name descname">User</code><a class="headerlink" href="#flaskapp.data.user.User" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This is a class representation of a simple flask app user</p>
 <p>The class to represent a user of this application.
@@ -370,6 +408,58 @@ is created then both inserted into the database and logged in.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.create_history_file">
+<code class="sig-name descname">create_history_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.create_history_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>create_history_file Creates a csv file containing the users parameter history</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.get_history">
+<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.get_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_history Get the users history</p>
+<p>Gets the users curretn history by calling the database
+helper function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list fo the users history, including the current pacemaker values</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.get_limits">
+<code class="sig-name descname">get_limits</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.get_limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_limits Get the users parameter limits</p>
+<p>Returns a dictionary of all the users parameter limits
+as they were defined in the application configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary of the users parameter limits</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.get_pacemaker_mode">
+<code class="sig-name descname">get_pacemaker_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.get_pacemaker_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_pacemaker_mode Returns the current pacemaker mode</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The current pacemaker mode, can be either a String or None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -423,7 +513,7 @@ is created then both inserted into the database and logged in.</p>
 <p>Searches the database to check if the user with matching username and
 password exists. No conflict management (i.e. ensuring only one user
 matches that username) is necessary since it is handled on account
-creation. If a matching user is found the <code class="xref py py-class docutils literal notranslate"><span class="pre">data.user</span></code> is updated
+creation. If a matching user is found the <a class="reference internal" href="index.html#module-data.user" title="data.user"><code class="xref py py-class docutils literal notranslate"><span class="pre">data.user</span></code></a> is updated
 with that users information and the user is logged in.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -441,30 +531,42 @@ with that users information and the user is logged in.</p>
 <dd><p>logout Logs out the currently logged in user</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt id="flaskapp.data.user.User.num_parameters">
-<code class="sig-name descname">num_parameters</code><em class="property"> = 8</em><a class="headerlink" href="#flaskapp.data.user.User.num_parameters" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="flaskapp.data.user.User.parameters">
-<code class="sig-name descname">parameters</code><em class="property"> = {'Atrial Amplitude': None, 'Atrial Pulse Width': None, 'Atrial Refractory Period': None, 'Lower Rate Limit': None, 'Upper Rate Limit': None, 'Ventricular Amplitude': None, 'Ventricular Pulse Width': None, 'Ventricular Refractory Period': None}</em><a class="headerlink" href="#flaskapp.data.user.User.parameters" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
 <dt id="flaskapp.data.user.User.update_all_pacemaker_parameters">
 <code class="sig-name descname">update_all_pacemaker_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.update_all_pacemaker_parameters" title="Permalink to this definition">¶</a></dt>
 <dd><p>update_all_pacemaker_parameters Updates all pacemaker parameters</p>
-<p>Given a dictionary of pacemaker parameters, in the same order as the values of
+<p>Given a list of pacemaker parameters, in the same order as the values of
 the pacemaker parameters dictionary, will update every value of the dictionary.
 NOTE: No complete check is done to ensure the validity of the input, it is up
-to the method user to ensure the dictionaries correctness.</p>
+to the method user to ensure the lists correctness.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>values</strong> (<em>dict</em>) – A dictionary of the updated pacemaker parameters</p>
+<dd class="field-odd"><p><strong>values</strong> (<em>list</em>) – An ordered list of the updated pacemaker parameters</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>True if the pacemaker parameters were updated sucessfully, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.data.user.User.update_pacemaker_mode">
+<code class="sig-name descname">update_pacemaker_mode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mode</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.data.user.User.update_pacemaker_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>update_pacemaker_mode Changes the pacemaker mode</p>
+<p>Given a mode that is contained in the application
+configurations list of allowed modes, will change
+the current pacemaker mode to the new one. If no
+valid mode is given will do nothing and return
+False.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mode</strong> (<em>str</em>) – The pacemaker mode to change to</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the pacemaker mode was successfully changed, Fale otherwise</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>bool</p>
@@ -509,15 +611,6 @@ value.</p>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="flaskapp.tests.html" class="btn btn-neutral float-right" title="flaskapp.tests package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="flaskapp.config.html" class="btn btn-neutral float-left" title="flaskapp.config package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

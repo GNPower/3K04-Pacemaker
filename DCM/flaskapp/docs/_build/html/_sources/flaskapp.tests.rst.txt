@@ -4,10 +4,10 @@ flaskapp.tests package
 Submodules
 ----------
 
-flaskapp.tests.test module
---------------------------
+flaskapp.tests.tests module
+---------------------------
 
-.. automodule:: flaskapp.tests.test
+.. automodule:: flaskapp.tests.tests
    :members:
    :undoc-members:
    :show-inheritance:
