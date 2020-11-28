@@ -18,8 +18,13 @@ in the following order
         VentricularRefractoryPeriod ]
 """
 
+import sqlite3, os, sys, inspect, datetime, re
 
-import sqlite3, os, inspect
+thisfolder = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentfolder = os.path.dirname(thisfolder)
+sys.path.insert(0, parentfolder)
+
+from config.config_manager import Config
 
 
 def init_db(file):
@@ -43,15 +48,7 @@ def init_db(file):
         CREATE TABLE IF NOT EXISTS users (
             _userid INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
-            password TEXT NOT NULL,
-            LowerRateLimit INTEGER,
-            UpperRateLimit INTEGER,
-            AtrialAmplitude INTEGER,
-            AtrialPulseWidth INTEGER,
-            AtrialRefractoryPeriod INTEGER,
-            VentricularAmplitude INTEGER,
-            VentricularPulseWidth INTEGER,
-            VentricularRefractoryPeriod INTEGER
+            password TEXT NOT NULL
         );
     """)
     conn.commit()
@@ -76,11 +73,24 @@ def insert_user(conn, cursor, username, password):
     :type username: str
     :param password: The password for the new user
     :type password: str
-    """  
+    """
     cursor.execute('INSERT INTO users (username, password) VALUES(?,?)', [username, password])
     conn.commit()
 
+    user_id = find_user(cursor, username=username, password=password)[0][0]
 
+    query_string = 'CREATE TABLE IF NOT EXISTS user_{0}( _entryid INTEGER PRIMARY KEY AUTOINCREMENT, timestamp TEXT NOT NULL, mode TEXT'.format(str(user_id))
+    parameter_list = [ i.replace(' ', '') for i in Config.getInstance().get('Parameters', 'parameters.values').split(',') ]
+
+    for parameter in parameter_list:
+        query_string += ', {0} INTEGER'.format(parameter)
+
+    query_string += ');'
+
+    cursor.execute(query_string)
+    conn.commit()
+
+    
 def find_user(cursor, username=None, password=None):
     """find_user Given search parameters will find all matching users in the database
 
@@ -119,11 +129,10 @@ def find_user(cursor, username=None, password=None):
         """.format(password))
     else:
         return None
-    return cursor.fetchall()    
-
+    return cursor.fetchall()
 
 def get_user(cursor, id):
-    """get_user Reuturns a complete users information given their unique ID
+    """get_user Returns a complete users information given their unique ID
 
     Return type is a list of users. Since the search is done by unique ID,
     this list is garunteed to be either of length one, if a user with matching
@@ -133,15 +142,58 @@ def get_user(cursor, id):
     :type cursor: :class:`sqlite3.Cursor`
     :param id: The unique ID of the user to search for
     :type id: int
-    :return: A list of tuples containing all items matching the search query
+    :return: A list of tuples containing the contents of the first item matching the search query
     :rtype: list
-    """ 
+    """
     cursor.execute(""" --begin-sql
-            SELECT * FROM users
-            WHERE
-            (_userid = '{0}');
-        """.format(id))
-    return cursor.fetchall()
+        SELECT * FROM users
+        WHERE _userid = {0};
+    """.format(str(id)))
+    return cursor.fetchall()[0]
+
+def get_user_parameters(cursor, id):
+    """get_user_parameters Returns a complete list of the users most recent parameters
+
+    Return type is a list of parameters. Since the search is done by unique ID,
+    this list is garunteed to be of constant length, defined by the parameter list
+    in the application configuration.
+
+    :param cursor: The cursor handler for the database the user can be found in
+    :type cursor: :class:`sqlite3.Cursor`
+    :param id: The unique ID of the user to search for
+    :type id: int
+    :return: A list of the users current pacemaker parameters
+    :rtype: list
+    """
+    cursor.execute(""" --begin-sql
+        SELECT * FROM {0};
+    """.format('user_' + str(id)))
+    result = cursor.fetchall()
+    if len(result) > 0:
+        return result[0]
+    return [-1, 'current', None] + [ None for i in Config.getInstance().get('Parameters', 'parameters.values').split(',') ]
+
+def get_user_history(cursor, id):
+    """get_user_history Returns a complete list of all the users past parameters
+
+    Return type is a list of all past parameters, including the current ones. 
+    This function has no garunteed list size, as it depends on how many history
+    entries the user has made.
+
+    :param cursor: The cursor handler for the database the user can be found in
+    :type cursor: :class:`sqlite3.Cursor`
+    :param id: The unique ID of the user to search for
+    :type id: int
+    :return: A list of all the users past pacemaker parameters
+    :rtype: list
+    """
+    cursor.execute(""" --begin-sql
+        SELECT * FROM {0};
+    """.format('user_' + str(id)))
+    result = cursor.fetchall()
+    if len(result) > 1:
+        return result[1:]
+    return []
 
 
 def get_rows(cursor):
@@ -149,14 +201,13 @@ def get_rows(cursor):
 
     :param cursor: The cursor handler for the database
     :type cursor: :class:`sqlite3.Cursor`
-    :return: A list of tuples containing all items matching the search query
-    :rtype: list
-    """   
+    :return: the number of rows contained in the user table of the database
+    :rtype: int
+    """ 
     cursor.execute(""" --begin-sql
         SELECT COUNT(*) FROM users;
     """)
-    return cursor.fetchall()
-
+    return cursor.fetchall()[0][0]
 
 def update_pacemaker_parameters(conn, cursor, id, values):
     """update_pacemaker_parameters Given a list of pacemaker parameters, updates the database values
@@ -176,17 +227,34 @@ def update_pacemaker_parameters(conn, cursor, id, values):
     :type values: list
     """ 
     cursor.execute(""" --begin-sql
-        UPDATE users
-        SET
-        LowerRateLimit = '{0}',
-        UpperRateLimit = '{1}',
-        AtrialAmplitude = '{2}',
-        AtrialPulseWidth = '{3}',
-        AtrialRefractoryPeriod = '{4}',
-        VentricularAmplitude = '{5}',
-        VentricularPulseWidth = '{6}',
-        VentricularRefractoryPeriod = '{7}'
-        WHERE
-        _userid = {8};
-    """.format(*values, id))
+        SELECT COUNT(*) FROM {0};
+    """.format('user_' + str(id)))
+    num_entries = cursor.fetchall()[0][0]
+
+    parameter_list = [ i.replace(' ', '') for i in Config.getInstance().get('Parameters', 'parameters.values').split(',') ]
+    
+    insert_query = 'SELECT ?, mode'
+    create_query = 'INSERT INTO user_{0} (timestamp, mode'.format(id)
+    update_query = "UPDATE user_{0} SET mode = '{1}'".format(id, values[0])
+
+    for index, parameter in enumerate(parameter_list, start=1):
+        insert_query += ', {0}'.format(parameter)
+        create_query += ', {0}'.format(parameter)
+        update_query += ", {0} = '{1}'".format(parameter, values[index])
+    
+    insert_query = create_query + ') ' + insert_query + ' FROM user_{0} WHERE timestamp = ?;'.format(id)
+    create_query += ') VALUES(' + '?' + (len(values))*',?' + ');'
+    update_query += ' WHERE timestamp = ?;'
+    
+
+    if num_entries == 0:
+        cursor.execute(create_query, ['current'] + values)
+        conn.commit()
+
+    cursor.execute(update_query, ['current'])
+    conn.commit()
+
+    timestamp = datetime.datetime.now().strftime(Config.getInstance().get('Database', 'db.timestamp'))
+
+    cursor.execute(insert_query, [timestamp, 'current'])
     conn.commit()
