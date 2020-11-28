@@ -1,4 +1,53 @@
 <div class="form-group">
     <p>{{ name_spaced }}:</p>
-    <input type="number" class="form-control" placeholder="{{ value }}" name="{{ name_spaced }}" value="{{ request.form.name_spaced }}">
+    <div class="flex" id="{{ name_spaced.replace(' ', '') }}">
+        <input type="number" class="form-control" placeholder="{{ value }}" name="{{ name_spaced }}" value="{{ request.form.name_spaced }}" id="num_input">
+        {% if name_spaced in limits and 'min' in limits[name_spaced] %}
+            <script>
+                $("input", "#{{ name_spaced.replace(' ', '') }}").first().attr({
+                   "min": {{ limits[name_spaced]['min'] }} 
+                });
+            </script>
+        {% endif %}
+        {% if name_spaced in limits and 'max' in limits[name_spaced] %}
+            <script>
+                $("input", "#{{ name_spaced.replace(' ', '') }}").first().attr({
+                   "max": {{ limits[name_spaced]['max'] }} 
+                });
+            </script>
+        {% endif %}
+        {% if name_spaced in limits and 'inc' in limits[name_spaced] %}
+            <script>
+                $("input", "#{{ name_spaced.replace(' ', '') }}").first().attr({
+                   "step": {{ limits[name_spaced]['inc'] }} 
+                });
+            </script>
+        {% endif %}
+        {% if name_spaced in limits and 'can_disable' in limits[name_spaced] and limits[name_spaced]['can_disable'] %}
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+            <script>
+                {% if value == -1 %}
+                    $("input", "#{{ name_spaced.replace(' ', '') }}").first().prop("disabled", true);
+                    $("input", "#{{ name_spaced.replace(' ', '') }}").first().attr("placeholder", "OFF");
+                    $("input", "#{{ name_spaced.replace(' ', '') }}").first().val("");
+                {% else %}
+                    $("input", "#{{ name_spaced.replace(' ', '') }}").last().prop("checked", true);
+                {% endif %}
+                
+                $("input", "#{{ name_spaced.replace(' ', '') }}").last().click(function() {
+                    if($(this).is(":checked")){
+                        $("input", "#{{ name_spaced.replace(' ', '') }}").first().prop("disabled", false);
+                        $("input", "#{{ name_spaced.replace(' ', '') }}").first().attr("placeholder", "None");
+                    }else{
+                        $("input", "#{{ name_spaced.replace(' ', '') }}").first().prop("disabled", true);
+                        $("input", "#{{ name_spaced.replace(' ', '') }}").first().attr("placeholder", "OFF");
+                        $("input", "#{{ name_spaced.replace(' ', '') }}").first().val("");
+                    }
+                });
+            </script>
+        {% endif %}
+    </div>
 </div>

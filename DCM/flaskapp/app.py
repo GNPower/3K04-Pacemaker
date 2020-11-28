@@ -8,26 +8,31 @@ backend.
 """
 
 
-from flask import Flask, render_template, redirect, url_for, request, session, flash
+from flask import Flask, render_template, redirect, url_for, request, session, flash, make_response
 from threading import Timer
-import webbrowser
-import sqlite3
+from time import time
+from random import random
+import webbrowser, sqlite3, re, json
 
-from config.config_manager import init_logging, init_config
+from config.config_manager import Config, Logger
 from config.decorators import login_required, logout_required
 from data.user import User
 from data.database import init_db
+from graphs.graphing import update_data, publish_data
 
 
 #initialize the config and logger before createing the app
-config = init_config()
-logger = init_logging(config)
+Config()
+if not Config.getInstance().is_config_read():
+    Config.getInstance().read_config()
+Logger()
+if not Logger.getInstance().is_logger_started():
+    Logger.getInstance().start_logger(Config.getInstance())
 #create the user
-user = User(config)
+user = User()
 #create the flask app, passing this file as the main, and a random string as the secret key
 app = Flask(__name__)
-#app.secret_key = "Ld5Nmcjx7lqdPbGVCxrb"
-app.secret_key = config.get('Applictation', 'app.secret-key')
+app.secret_key = Config.getInstance().get('Applictation', 'app.secret-key')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -47,6 +52,7 @@ def home():
     error = None
     #if a POST method then either a user is loggin in or being created
     if request.method == 'POST':
+        Logger.getInstance().log('DEBUG', 'Home route HTTP Post recieved\n\tPost Contents:\t{0}'.format(request.form))
         #print(request.form)
         #if post has 3 entries, a user is being created
         if (len(request.form) > 2):
@@ -66,10 +72,9 @@ def home():
                 error = 'passwords don\'t match. Could not create new account'
         #if post has 2 entries, a user is logging in
         else:
-            #print('calling login')
             #attempts to log the user in
+            Logger.getInstance().log('DEBUG', 'Attempting user login with username "{0}" and password "{1}"'.format(request.form['username'], request.form['password']))
             user.login(request.form['username'], request.form['password'])            
-            #print('login completed')
             #if the user was logged in, redirect them to their user specific page
             if user.is_loggedin():
                 flash('You were just logged in!')
@@ -111,14 +116,18 @@ def user_parameters():
     """
     #if a post request is made, a user is trying to change their parameters
     if request.method == 'POST':
-        #print('FORM:', request.form)
+        values = dict(request.form)
+        required_values = Config.getInstance().get('Parameters', 'parameters.values').split(',')
+        for value in required_values:
+            if value not in values:
+                values[value] = -1
         #create a new parameters dictionary by starting with the original dictionary, and updating its values with the modified value from the post request
-        updates = {j: {k: v for k, v in dict(request.form).items() if v}.get(j, user.get_pacemaker_parameters()[j]) for j in user.get_pacemaker_parameters()}
-        #print('UPDATES:', updates)
+        updates = {j: {k.replace(' ', ''): v for k, v in values.items() if v}.get(j, user.get_pacemaker_parameters()[j]) for j in user.get_pacemaker_parameters()}
         #updates all the pacemaker parameters with the newly generated list
-        logger.info('Pacemaker Parameters Updated: {0}'.format(updates))
-        user.update_all_pacemaker_parameters(updates)
-    return render_template('user_parameters.html', username=user.get_username(), parameters=user.get_pacemaker_parameters())
+        Logger.getInstance().log('DEBUG', 'Pacemaker Parameters Updated: {0}'.format(updates))
+        user.update_all_pacemaker_parameters(updates.values())
+    parameters = { re.sub(r"(\w)([A-Z])", r"\1 \2", k): user.get_pacemaker_parameters()[k] for k in user.get_pacemaker_parameters() }
+    return render_template('user_parameters.html', username=user.get_username(), parameters=parameters, limits=user.get_limits())
 
 
 @app.route('/user/connect', methods=['GET', 'POST'])
@@ -139,7 +148,7 @@ def user_connect():
     """
     #sets the default pacemaker mode to 'None', forcing the user to select a mode manually
     #This is an attempt to avoid the user programming the pacemaker in a mode they did not intend
-    mode = 'None'
+    mode = user.get_pacemaker_mode()
     if request.method == 'POST':
         if 'Pacing Mode' in request.form:
             #print(request.form['Pacing Mode'])
@@ -147,15 +156,81 @@ def user_connect():
             flash('Pacing Mode Changed To {0}'.format(request.form['Pacing Mode']))
             #changes the pacing mode (i.e. the application state)
             mode = request.form['Pacing Mode']
+            user.update_pacemaker_mode(mode)
         else:
             values = dict(request.form)
             mode = values.pop('Mode', None)            
             #create a new parameters dictionary by starting with the original dictionary, and updating its values with the modified value from the post request
-            updates = {j: {k: v for k, v in values.items() if v}.get(j, user.get_pacemaker_parameters()[j]) for j in user.get_pacemaker_parameters()}
+            required_values = Config.getInstance().get('Parameters', 'parameters.mode.' + str(mode)).split(',')
+            for value in required_values:
+                if value not in values:
+                    values[value] = -1
+            updates = {j: {k.replace(' ', ''): v for k, v in values.items() if v}.get(j, user.get_pacemaker_parameters()[j]) for j in user.get_pacemaker_parameters()}
             #updates all the pacemaker parameters with the newly generated list
-            logger.info('Pacemaker Parameters Updated: {0}'.format(updates))
-            user.update_all_pacemaker_parameters(updates)
-    return render_template('user_connect.html', mode=mode, parameters=user.get_pacemaker_parameters())
+            Logger.getInstance().log('DEBUG', 'Pacemaker Parameters Updated: {0}'.format(updates))
+            user.update_all_pacemaker_parameters(updates.values())
+    if mode == None:
+        parameters = {}
+    else:
+        parameters = { re.sub(r"(\w)([A-Z])", r"\1 \2", k): user.get_pacemaker_parameters()[k] for k in [ value.replace(' ', '') for value in Config.getInstance().get('Parameters', 'parameters.mode.' + str(mode)).split(',') ] }
+    modes = Config.getInstance().get('Parameters', 'parameters.modes').split(',')
+    return render_template('user_connect.html', mode=mode, modes=modes, parameters=parameters, limits=user.get_limits())
+
+
+@app.route('/user/history', methods=['GET', 'POST'])
+@login_required
+def user_history():
+    """user_history The route to the user history page of the flask application
+
+    Renders the user history page of the flask app. This page allows the user to 
+    view the entire history of their pacemaker parameters in a convenient table. 
+    This table can be exported to a csv file if the user wishes, which will appear 
+    in the downloads file.
+
+    :return: The render template used by the user connect page, in this case the 'user_history.html' template
+    :rtype: :class:`flask.render_tmeplate`
+    """
+    if request.method == 'POST':
+        user.create_history_file()
+    parameters = { re.sub(r"(\w)([A-Z])", r"\1 \2", k): user.get_pacemaker_parameters()[k] for k in user.get_pacemaker_parameters() }
+    history = user.get_history()
+    return render_template('user_history.html', username=user.get_username(), parameters=parameters, history=history)
+
+
+@app.route('/user/egram', methods=['GET', 'POST'])
+@login_required
+def user_egram():
+    """user_egram The route to the user history page of the flask application
+
+    Renders the user egram page of the flask app. This page allows the user to 
+    view a live graph (or egram) of the pacemakers atrium and ventrical chambers.
+    NOTE: The graph displayed is an adaptable graph and will take up to one minute 
+    to adjust both the graphs domain and range values.
+
+    :return: The render template used by the user connect page, in this case the 'user_egram.html' template
+    :rtype: :class:`flask.render_tmeplate`
+    """
+    if request.method == 'POST':
+        publish_data(user.get_username())
+    domain = int(Config.getInstance().get('Graphing', 'graph.domain'))
+    period = int(Config.getInstance().get('Graphing', 'graph.update-period'))
+    return render_template('user_egram.html', domain=domain, period=period)
+
+
+@app.route('/user/data', methods=['GET', 'POST'])
+@login_required
+def user_data():
+    """user_data The route to the data request uri for the egram
+
+    Will return a json response containing updated point values to 
+    be added to the live graph.
+
+    :return: A json response, containing updated point values
+    :rtype: json
+    """
+    response = make_response(json.dumps(update_data()))
+    response.content_type = 'application/json'
+    return response
 
 
 @app.route('/logout')
@@ -184,14 +259,15 @@ def open_browser():
     So the user doesn't have to memorize the url and port the application 
     is being hosted on.
     """
-    webbrowser.open_new('http://' + config.get('HostSelection', 'host.address') +
-                        ':' + config.get('HostSelection', 'host.port') + "/")
+    webbrowser.open_new('http://' + Config.getInstance().get('HostSelection', 'host.address') +
+                        ':' + Config.getInstance().get('HostSelection', 'host.port') + "/")
 
 
 if __name__ == '__main__':
     #calls the open_browser function in a new thread to avoid interfering with the application startup
-    if config.get('Applictation', 'app.open-on-load'):
+    if Config.getInstance().get('Applictation', 'app.open-on-load'):
         Timer(1, open_browser).start()
     # WARNING: Change 'use_reloader' and 'debug' to False before shipping release (done in the application.ini file)
-    app.run(debug=config.getboolean('Applictation', 'app.debug'), host=config.get('HostSelection', 'host.address'), port=config.get(
-        'HostSelection', 'host.port'), threaded=config.getboolean('Applictation', 'app.threaded'), use_reloader=config.getboolean('Applictation', 'app.use-reloader'))
+    app.run(debug=Config.getInstance().getboolean('Applictation', 'app.debug'), host=Config.getInstance().get('HostSelection', 'host.address'), 
+    port=Config.getInstance().get('HostSelection', 'host.port'), threaded=Config.getInstance().getboolean('Applictation', 'app.threaded'), 
+    use_reloader=Config.getInstance().getboolean('Applictation', 'app.use-reloader'))

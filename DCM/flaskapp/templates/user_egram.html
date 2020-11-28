@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% include "nav.html" %}
+
+<script>
+    document.getElementById("egram").classList.add("active");
+</script>
+
+<br>
+<br>
+
+<form id="export-form" method="post"></form>
+<div class="form-group">
+    <input form="export-form" type="submit" class="btn btn-primary btn-block btn-lg" value="Export To CSV" id="export">
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="container-fluid" id="data-container">
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var chart;
+
+    function requestData() {
+        var requests = $.get('/user/data');
+
+        var tm = requests.done(function (result) {
+
+            var series = chart.series[0],
+            shift = series.data.length > {{ domain }};
+            chart.series[0].addPoint(result[0], true, shift);
+
+            series = chart.series[1],
+            shift = series.data.length > {{ domain }};
+            chart.series[1].addPoint(result[1], true, shift);
+
+            setTimeout(requestData, {{ period }});
+        });
+    }
+
+    $(document).ready(function () {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'data-container',
+                defaultSeriesType: 'spline',
+                events: {
+                    load: requestData
+                }
+            },
+            title: {
+                text: 'Live Egram Data'
+            },
+            xAxis: {
+                type: 'linear',
+                maxZoom: 20 * 1000,
+                title: {
+                    text: 'Time',
+                    margin: 80
+                },
+                units: [[
+                    'millisecond',
+                    [1, 2, 5, 10, 20, 25, 50, 100, 200, 500]
+                ]]
+            },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Voltage (V)',
+                    margin: 80
+                }
+            },
+            series: [{
+                name: 'Atrium',
+                data: []
+            },
+            {
+                name: 'Ventrical',
+                data: []
+            }]
+        });
+    });
+</script>
+
+
+{% endblock %}
