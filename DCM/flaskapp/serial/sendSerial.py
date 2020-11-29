@@ -15,6 +15,7 @@ def sendSerial(mode, LRL, URL, Max_Sensor_Rate, AV_Delay, A_Amplitude, V_Amplitu
     uC.write(serial_com)
     # unpacked = st.unpack(serial_com)
     # print(unpacked)
+    ser.close()
 
 
 # sendSerial(1, 100, 110, 0, 10, 5.0, 5.0, 10, 20, 0.0, 4.0, 200, 0, 0, 0, 1.0, 1, 0, 0, 0, 'COM7')
