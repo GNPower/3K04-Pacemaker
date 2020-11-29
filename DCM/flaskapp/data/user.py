@@ -204,6 +204,8 @@ class User:
         """
         return self.__username
 
+    def get_db_handlers(self):
+        return self.__conn, self.__cursor
 
     def update_pacemaker_parameter(self, key, value):
         """update_pacemaker_parameter Updates a single pacemaker parameter

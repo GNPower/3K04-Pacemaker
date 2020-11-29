@@ -258,3 +258,6 @@ def update_pacemaker_parameters(conn, cursor, id, values):
 
     cursor.execute(insert_query, [timestamp, 'current'])
     conn.commit()
+
+def shutdown_db(conn):
+    conn.close()  

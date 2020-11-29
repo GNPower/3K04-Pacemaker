@@ -1,4 +1,8 @@
-import os, inspect, sys, datetime, time
+import os, inspect, sys, datetime, time, random, string, glob, shutil
+from string import ascii_lowercase
+from random import choice
+
+from time import sleep
 
 thisfolder = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentfolder = os.path.dirname(thisfolder)
@@ -7,6 +11,7 @@ sys.path.insert(0, parentfolder)
 from data.database import *
 from config.config_manager import *
 from data.user import *
+from graphs.graphing import *
 
 import app
 
@@ -58,4 +63,23 @@ def init_config_and_logger(cfg_files=[]):
 
 create_test_config()
 init_config_and_logger(cfg_files=[test_config_name])
+    
 
+set_start_time()
+for i in range(0,3000):
+    update_data()
+    sleep(0.001)
+
+username = ''.join(choice(ascii_lowercase) for x in range(10))
+publish_data(username)
+
+
+os.chdir(os.path.join(parentfolder, 'downloads'))
+file_list = []
+for _file in glob.glob(username + "*.csv"):
+    file_list.append(_file)
+for _file in glob.glob(username + "*.pdf"):
+    file_list.append(_file)
+assert len(file_list) == 2
+assert file_list[0].endswith(".csv")
+assert file_list[1].endswith(".pdf")
