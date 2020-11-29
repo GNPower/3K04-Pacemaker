@@ -22,39 +22,32 @@
 
         <div class="container main">
             <!-- child template -->
-            
-            <div class="justify-center nav">
-                <a href="{{ url_for('user_page') }}">Home</a>
-                <a href="{{ url_for('user_parameters') }}">My Parameters</a>
-                <a href="{{ url_for('user_connect') }}">Connect A Pacemaker</a>
-                <div class="nav-right">
-                    <img src="../static/no-connection.png" alt="Connection Status" width="24px", height="24px">
-                    <a href="{{ url_for('logout') }}">Logout</a>                    
-                </div>
+
+
+            <div class="justify-center">
+                <h1>Pacemaker History For TestUser</h1>
             </div>
             
-            <form action="" method="post" class="justify-center" style="padding-top: 1rem;" name="pacemode">
-            
-                
-                <select name="pacemode" class="btn btn-danger dropdown" id="pacemode">
-                    <option value="" disabled selected>Select Pacing Mode</option>
-                    <option value="AOO">AOO</option>
-                    <option value="VOO">VOO</option>
-                </select>
-            </form>
-
-            <script>
-                document.getElementById("connect").classList.add("active");
-            </script>
-            
-            <script>
-            
-                document.getElementById("pacemode").addEventListener("change", function (event) {
-                    console.log('testing 1 2 3...');
-                    document.forms["pacemode"].submit();
-                });
-            
-            </script>
+            <div class="justify-center">
+                <table class="justify-center">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Param_1</th>
+                            <th>Param_2</th>
+                            <th>Param_N</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>imadate</td>
+                            <td>val1</td>
+                            <td>val2</td>
+                            <td>valn</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
 
         </div>

@@ -15,7 +15,7 @@
 
     
     {% for parameter in parameters %}
-        {% with name_spaced=parameter, value=parameters[parameter] %}
+        {% with name_spaced=parameter, value=parameters[parameter], limits=limits %}
             {% include "parameter_form_item.html" %}
         {% endwith %}
     {% endfor %}

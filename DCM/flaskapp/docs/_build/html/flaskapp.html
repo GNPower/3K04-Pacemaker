@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>flaskapp package &mdash; 3K04-PacemakerProject DCM (Group 10)  documentation</title>
+  <title>flaskapp package &mdash; Pacemaker DCM (Group 10)  documentation</title>
   
 
   
@@ -35,9 +35,7 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="flaskapp.config package" href="flaskapp.config.html" />
-    <link rel="prev" title="flaskapp" href="modules.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -51,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> 3K04-PacemakerProject DCM (Group 10)
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Pacemaker DCM (Group 10)
           
 
           
@@ -82,28 +80,20 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">flaskapp</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">flaskapp package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="flaskapp.config.html">flaskapp.config package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="flaskapp.data.html">flaskapp.data package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="flaskapp.tests.html">flaskapp.tests package</a></li>
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">flaskapp package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-flaskapp.app">flaskapp.app module</a><ul>
+<li><a class="reference internal" href="#main-application">Main Application</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-flaskapp.app">flaskapp.app module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#main-application">Main Application</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-flaskapp">Module contents</a></li>
+<li><a class="reference internal" href="#module-flaskapp">Module contents</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
+</div>
             
           
         </div>
@@ -117,7 +107,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">3K04-PacemakerProject DCM (Group 10)</a>
+          <a href="index.html">Pacemaker DCM (Group 10)</a>
         
       </nav>
 
@@ -147,8 +137,6 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="modules.html">flaskapp</a> &raquo;</li>
         
       <li>flaskapp package</li>
     
@@ -201,9 +189,18 @@
 <li class="toctree-l2"><a class="reference internal" href="flaskapp.data.html#module-flaskapp.data">Module contents</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="flaskapp.graphs.html">flaskapp.graphs package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flaskapp.graphs.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flaskapp.graphs.html#module-flaskapp.graphs.graphing">flaskapp.graphs.graphing module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flaskapp.graphs.html#graphing-library">Graphing Library</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flaskapp.graphs.html#module-flaskapp.graphs">Module contents</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="flaskapp.tests.html">flaskapp.tests package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="flaskapp.tests.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="flaskapp.tests.html#module-flaskapp.tests.test">flaskapp.tests.test module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flaskapp.tests.html#flaskapp-tests-tests-module">flaskapp.tests.tests module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flaskapp.tests.html#module-flaskapp.tests">Module contents</a></li>
 </ul>
 </li>
@@ -267,6 +264,11 @@ is being hosted on.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt id="flaskapp.app.random">
+<code class="sig-prename descclassname">flaskapp.app.</code><code class="sig-name descname">random</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; x in the interval [0, 1).<a class="headerlink" href="#flaskapp.app.random" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="flaskapp.app.user_connect">
 <code class="sig-prename descclassname">flaskapp.app.</code><code class="sig-name descname">user_connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.app.user_connect" title="Permalink to this definition">¶</a></dt>
 <dd><p>user_connect The route to the user connect page of the flask application</p>
@@ -280,6 +282,58 @@ visible effect on the rendered content of the application.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The render template used by the user connect page, in this case the ‘user_connect.html’ template</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">flask.render_tmeplate</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.app.user_data">
+<code class="sig-prename descclassname">flaskapp.app.</code><code class="sig-name descname">user_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.app.user_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>user_data The route to the data request uri for the egram</p>
+<p>Will return a json response containing updated point values to
+be added to the live graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A json response, containing updated point values</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>json</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.app.user_egram">
+<code class="sig-prename descclassname">flaskapp.app.</code><code class="sig-name descname">user_egram</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.app.user_egram" title="Permalink to this definition">¶</a></dt>
+<dd><p>user_egram The route to the user history page of the flask application</p>
+<p>Renders the user egram page of the flask app. This page allows the user to
+view a live graph (or egram) of the pacemakers atrium and ventrical chambers.
+NOTE: The graph displayed is an adaptable graph and will take up to one minute
+to adjust both the graphs domain and range values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The render template used by the user connect page, in this case the ‘user_egram.html’ template</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">flask.render_tmeplate</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.app.user_history">
+<code class="sig-prename descclassname">flaskapp.app.</code><code class="sig-name descname">user_history</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.app.user_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>user_history The route to the user history page of the flask application</p>
+<p>Renders the user history page of the flask app. This page allows the user to
+view the entire history of their pacemaker parameters in a convenient table.
+This table can be exported to a csv file if the user wishes, which will appear
+in the downloads file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The render template used by the user connect page, in this case the ‘user_history.html’ template</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">flask.render_tmeplate</span></code></p>
@@ -335,15 +389,6 @@ updated with these changed values.</p>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="flaskapp.config.html" class="btn btn-neutral float-right" title="flaskapp.config package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="modules.html" class="btn btn-neutral float-left" title="flaskapp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

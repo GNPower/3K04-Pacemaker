@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% include "nav.html" %}
+
+<script>
+    document.getElementById("history").classList.add("active");
+</script>
+
+<div class="justify-center">
+    <h1>Pacemaker History For {{ username }}</h1>
+</div>
+
+<hr>
+<form id="export-form" method="post"></form>
+<div class="form-group">
+    <input form="export-form" type="submit" class="btn btn-primary btn-block btn-lg" value="Export To CSV" id="export">
+</div>
+
+
+<div style="overflow-x: scroll;">
+    <table class="table" border="1" frame="void" rules="rows">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Mode</th>
+                {% for parameter in parameters %}
+                    <th>{{ parameter }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in history %}
+                <tr>
+                    {% for value in entry[:0:-1] %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

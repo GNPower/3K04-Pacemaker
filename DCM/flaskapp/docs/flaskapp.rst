@@ -9,6 +9,7 @@ Subpackages
 
    flaskapp.config
    flaskapp.data
+   flaskapp.graphs
    flaskapp.tests
 
 Submodules

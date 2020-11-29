@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to Test’s documentation! &mdash; 3K04-PacemakerProject DCM (Group 10)  documentation</title>
+  <title>Welcome to Pacemaker DCM (Group 10)’s documentation! &mdash; Pacemaker DCM (Group 10)  documentation</title>
   
 
   
@@ -35,8 +35,7 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="flaskapp" href="modules.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -50,7 +49,7 @@
           
 
           
-            <a href="#" class="icon icon-home" alt="Documentation Home"> 3K04-PacemakerProject DCM (Group 10)
+            <a href="#" class="icon icon-home" alt="Documentation Home"> Pacemaker DCM (Group 10)
           
 
           
@@ -81,11 +80,34 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">flaskapp</a></li>
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Welcome to Pacemaker DCM (Group 10)’s documentation!</a></li>
+<li><a class="reference internal" href="#flaskapp-app">FlaskApp App</a></li>
+<li><a class="reference internal" href="#module-config.config_manager">Config Config_Manager</a><ul>
+<li><a class="reference internal" href="#config-manager">Config Manager</a></li>
 </ul>
-
+</li>
+<li><a class="reference internal" href="#module-config.decorators">Config Decorators</a><ul>
+<li><a class="reference internal" href="#decorators-library">Decorators Library</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-data.database">Data Database</a><ul>
+<li><a class="reference internal" href="#database-library">Database Library</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-data.user">Data User</a><ul>
+<li><a class="reference internal" href="#user-class">User Class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-graphs.graphing">Graphs Graphing</a><ul>
+<li><a class="reference internal" href="#graphing-library">Graphing Library</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tests-tests">Tests Tests</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
             
           
         </div>
@@ -99,7 +121,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">3K04-PacemakerProject DCM (Group 10)</a>
+          <a href="#">Pacemaker DCM (Group 10)</a>
         
       </nav>
 
@@ -130,7 +152,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Welcome to Test’s documentation!</li>
+      <li>Welcome to Pacemaker DCM (Group 10)’s documentation!</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -149,17 +171,783 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="welcome-to-test-s-documentation">
-<h1>Welcome to Test’s documentation!<a class="headerlink" href="#welcome-to-test-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="welcome-to-pacemaker-dcm-group-10-s-documentation">
+<h1>Welcome to Pacemaker DCM (Group 10)’s documentation!<a class="headerlink" href="#welcome-to-pacemaker-dcm-group-10-s-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">flaskapp</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="flaskapp.html">flaskapp package</a></li>
-</ul>
-</li>
-</ul>
 </div>
+</div>
+<div class="section" id="flaskapp-app">
+<h1>FlaskApp App<a class="headerlink" href="#flaskapp-app" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="module-config.config_manager">
+<span id="config-config-manager"></span><h1>Config Config_Manager<a class="headerlink" href="#module-config.config_manager" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="config-manager">
+<h2>Config Manager<a class="headerlink" href="#config-manager" title="Permalink to this headline">¶</a></h2>
+<p>A collection of configuration setup
+classes, to initialize the config
+variables and setup application
+logging as well as allow access to
+both the config variables and logging
+function directly form anwhere within
+the application.</p>
+<dl class="py class">
+<dt id="config.config_manager.Config">
+<em class="property">class </em><code class="sig-prename descclassname">config.config_manager.</code><code class="sig-name descname">Config</code><a class="headerlink" href="#config.config_manager.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>The configuration class, holds all the configuration information</p>
+<p>Manages the configuration and provides access to the config through a
+singleton implementation. Its get method can be called from anywhere
+within the application the Config class is imported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Exception</strong> – This class is a singleton!</p></li>
+<li><p><strong>Exception</strong> – Configuration can only be read once!</p></li>
+<li><p><strong>Exception</strong> – Configutation has not been read, read_config() must be called first!</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="config.config_manager.Config.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">variable</span></em><span class="sig-paren">)</span><a class="headerlink" href="#config.config_manager.Config.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>get Gets a variable from the configuration</p>
+<p>Given a configuration section and variable name within that section
+will return the value of the variable as a string</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section</strong> (<em>str</em>) – The section in the configuration file to find the variable in</p></li>
+<li><p><strong>variable</strong> (<em>str</em>) – The variable name to read from the section</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – Configutation has not been read, read_config() must be called first!</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The string representation of the variable</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="config.config_manager.Config.getInstance">
+<em class="property">static </em><code class="sig-name descname">getInstance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#config.config_manager.Config.getInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>getInstance Gets the current instance of Config</p>
+<p>If no instance exists, it will create the initial instance
+before returning it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A singleton instance of the Config class</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">config_manager.Config</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="config.config_manager.Config.get_all">
+<code class="sig-name descname">get_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em><span class="sig-paren">)</span><a class="headerlink" href="#config.config_manager.Config.get_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_all Gets all variable and values within a section</p>
+<p>Given a configuration section from the configuration files
+will return a dictionary containing all variable names and
+values from within that section. All varaible names and values
+are stored in their string representation within the dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>section</strong> (<em>str</em>) – The section of the configuration file to read</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – Configutation has not been read, read_config() must be called first!</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary conatianing variable name, value pairs</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="config.config_manager.Config.getboolean">
+<code class="sig-name descname">getboolean</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">variable</span></em><span class="sig-paren">)</span><a class="headerlink" href="#config.config_manager.Config.getboolean" title="Permalink to this definition">¶</a></dt>
+<dd><p>getboolean Gets a variable from the configuration</p>
+<p>Given a configuration section and variable name within that section
+will return the value of the variable as a boolean. The value in the
+configuration file can only be in the form [yes/no, true/false, on/off, 1/0],
+for any other values this method will throw an error</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section</strong> (<em>str</em>) – The section of the configuration file to find the variable in</p></li>
+<li><p><strong>variable</strong> (<em>str</em>) – The variable to read form the section</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – Configuration has not been rean, read_config() must be called first!</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The boolean representation of the variable</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="config.config_manager.Config.read_config">
+<code class="sig-name descname">read_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg_files</span><span class="o">=</span><span class="default_value">['D:\\School\\Year 3\\Semester 1\\3K04\\PacemakerProject\\DCM\\flaskapp\\config\\application.ini']</span></em><span class="sig-paren">)</span><a class="headerlink" href="#config.config_manager.Config.read_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>read_config Reads the configuration files</p>
+<p>Called on instance initialization. Will search the config
+directory for all .ini files and read their variable values
+into the Config Manager. Raises an exception if called more
+than once, to ensure variables are not changed mid execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cfg_files</strong> (<em>list</em><em>, </em><em>optional</em>) – A list of additional ini files to read, application.ini is added automatically, defaults to []</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – Configuration can only be read once!</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="config.config_manager.Logger">
+<em class="property">class </em><code class="sig-prename descclassname">config.config_manager.</code><code class="sig-name descname">Logger</code><a class="headerlink" href="#config.config_manager.Logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Logger class, holds all logging information</p>
+<p>This class can initialize a logger through a singleton
+implementation. Its method can be called from anywhere
+within the application where the Logger class is imported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Exception</strong> – This class is a singleton!</p></li>
+<li><p><strong>Exception</strong> – Logger can only be started once!</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="config.config_manager.Logger.getInstance">
+<em class="property">static </em><code class="sig-name descname">getInstance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#config.config_manager.Logger.getInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>getInstance Get the current instance of Logger</p>
+<p>If no instance exists it will create the initial
+instance before returning it</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A singleton instance of the Logger class</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">config_manager.Logger</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="config.config_manager.Logger.log">
+<code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em>, <em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#config.config_manager.Logger.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>log Will log a message</p>
+<p>Given a message and the level of that message, this
+method will log the message to all the Loggers handlers
+(i.e. file and terminal) only if the log level is equal
+to or higher than the Logger’s log level defined in the
+applications configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<em>str</em>) – The level of the message being logged can take the values: DEBUG, INFO, WARN, ERROR, CRITICAL</p></li>
+<li><p><strong>msg</strong> (<em>str</em>) – The message to be logged by the Logger</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="config.config_manager.Logger.start_logger">
+<code class="sig-name descname">start_logger</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#config.config_manager.Logger.start_logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>start_logger Starts the logger</p>
+<p>This method must be called by the main block of the application.
+It will create the log file and start the logging process both to
+the log file and the terminal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">config_manager.Config</span></code>) – The Instance of Config, which must be created and initialized before the Logger is started</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – Logger can only be started once!</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-config.decorators">
+<span id="config-decorators"></span><h1>Config Decorators<a class="headerlink" href="#module-config.decorators" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="decorators-library">
+<h2>Decorators Library<a class="headerlink" href="#decorators-library" title="Permalink to this headline">¶</a></h2>
+<p>A collection of decorators used by the main
+app, created to avoid the unnecessary
+reproduction of code.</p>
+<dl class="py function">
+<dt id="config.decorators.login_required">
+<code class="sig-prename descclassname">config.decorators.</code><code class="sig-name descname">login_required</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em><span class="sig-paren">)</span><a class="headerlink" href="#config.decorators.login_required" title="Permalink to this definition">¶</a></dt>
+<dd><p>login_required Ensures that a user is logged in before granting access to user restricted pages</p>
+<p>Will check if a user is logged in and only allow a redirect to the user restricted page if there is
+a user logged in. If no user is logged in it will chenge the redirect to the home page and flash a
+login required messege, letting the user know they must login before accessing that endpoint.
+NOTE: This function should never be called as a function, only used as a decorator above functions
+who require its functionality to be implemented on entry. Always use a decorator (i.e. &#64;login_required)
+to invoke this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>f</strong> (<em>function</em>) – The function being decorated. This will be automatically filled when using the &#64; tag</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The wrap function, whose contents are the input function, modified to add the functionality of this decorator</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="config.decorators.logout_required">
+<code class="sig-prename descclassname">config.decorators.</code><code class="sig-name descname">logout_required</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em><span class="sig-paren">)</span><a class="headerlink" href="#config.decorators.logout_required" title="Permalink to this definition">¶</a></dt>
+<dd><p>logout_required Ensures that a user is logged out before granting access to non user restricted pages</p>
+<p>Will check if a user is logged out and only allow a redirect to the non user restricted page if there is
+no user logged in. If a user is logged in it will simply log them out automatically before redirecting to
+the requested endpoint. No logout action on the part of the user is necessary.
+NOTE: This function should never be called as a function, only used as a decorator above functions
+who require its functionality to be implemented on entry. Always use a decorator (i.e. &#64;logout_required)
+to invoke this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>f</strong> (<em>function</em>) – The function being decorated. This will be automatically filled when using the &#64; tag</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The wrap function, whose contents are the input function, modified to add the functionality of this decorator</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>function</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-data.database">
+<span id="data-database"></span><h1>Data Database<a class="headerlink" href="#module-data.database" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="database-library">
+<h2>Database Library<a class="headerlink" href="#database-library" title="Permalink to this headline">¶</a></h2>
+<p>A collection of functions capable of interacting with
+a sqlite3 single file databse.
+NOTE: Users are returned as lists, whose entries are
+in the following order</p>
+<blockquote>
+<div><p>[ _userid,
+username,
+password,
+LowerRateLimit,
+UpperRateLimit,
+AtrialAmplitude,
+AtrialPulseWidth,
+AtrialRefractoryPeriod,
+VentricularAmplitude,
+VentricularPulseWidth,
+VentricularRefractoryPeriod ]</p>
+</div></blockquote>
+<dl class="py function">
+<dt id="data.database.find_user">
+<code class="sig-prename descclassname">data.database.</code><code class="sig-name descname">find_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">username</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">password</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.database.find_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>find_user Given search parameters will find all matching users in the database</p>
+<p>Given one or more of the optional search parameters will return a list of all users
+matching that search criteria. Accepted search parameters are username and password.
+If neither optional parameters are given, the function will return None</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database to search for the user in</p></li>
+<li><p><strong>username</strong> (<em>str</em><em>, </em><em>optional</em>) – The username of the user to search for, defaults to None</p></li>
+<li><p><strong>password</strong> (<em>str</em><em>, </em><em>optional</em>) – The password of the user to search for, defaults to None</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of tuples containing all users matching the search query</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="data.database.get_rows">
+<code class="sig-prename descclassname">data.database.</code><code class="sig-name descname">get_rows</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cursor</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.database.get_rows" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_rows Returns the number of rows (.i.e users) in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the number of rows contained in the user table of the database</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="data.database.get_user">
+<code class="sig-prename descclassname">data.database.</code><code class="sig-name descname">get_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.database.get_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_user Returns a complete users information given their unique ID</p>
+<p>Return type is a list of users. Since the search is done by unique ID,
+this list is garunteed to be either of length one, if a user with matching
+unique ID is found, or zero, if no user with matching unique ID is found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database the user can be found in</p></li>
+<li><p><strong>id</strong> (<em>int</em>) – The unique ID of the user to search for</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of tuples containing the contents of the first item matching the search query</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="data.database.get_user_history">
+<code class="sig-prename descclassname">data.database.</code><code class="sig-name descname">get_user_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.database.get_user_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_user_history Returns a complete list of all the users past parameters</p>
+<p>Return type is a list of all past parameters, including the current ones.
+This function has no garunteed list size, as it depends on how many history
+entries the user has made.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database the user can be found in</p></li>
+<li><p><strong>id</strong> (<em>int</em>) – The unique ID of the user to search for</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of all the users past pacemaker parameters</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="data.database.get_user_parameters">
+<code class="sig-prename descclassname">data.database.</code><code class="sig-name descname">get_user_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.database.get_user_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_user_parameters Returns a complete list of the users most recent parameters</p>
+<p>Return type is a list of parameters. Since the search is done by unique ID,
+this list is garunteed to be of constant length, defined by the parameter list
+in the application configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database the user can be found in</p></li>
+<li><p><strong>id</strong> (<em>int</em>) – The unique ID of the user to search for</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A list of the users current pacemaker parameters</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="data.database.init_db">
+<code class="sig-prename descclassname">data.database.</code><code class="sig-name descname">init_db</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.database.init_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>init_db Initializes a database located at a given file location</p>
+<p>The file location should be specified relative to the ~/3K04-Pacemaker/DCM/flaskapp/data
+directory. The file should also have a supported sqlite3 extension (.db .db3 .sdb .s3db
+.sqlite .sqlite3) and if the file does not already exist it will be created and
+populated with a new databases.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file</strong> (<em>str</em>) – The relative file location of the single file sqlite3 database</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A tuple containing the databases connection handler and cursor (sqlite3.Connection, sqlite3.Cursor)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="data.database.insert_user">
+<code class="sig-prename descclassname">data.database.</code><code class="sig-name descname">insert_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conn</span></em>, <em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">username</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.database.insert_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>insert_user Given a username and password of a new user, will insert the user into the database</p>
+<p>This function will create a new entry in the database of a user with the given username and password.
+Only the users username and password are initialized upon user creation, the pacemaker parameters will
+default to None, forcing the user to manually enter their parameters.
+NOTE: This function does no check for conflicting users in the database before inserting a new user.
+It is up to the user of this function to check for conflicts (if they wish to do so) before calling
+this function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conn</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Connection</span></code>) – The connection handler for the database to insert a new user into</p></li>
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database to insert a new user into</p></li>
+<li><p><strong>username</strong> (<em>str</em>) – The username for the new user</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – The password for the new user</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="data.database.update_pacemaker_parameters">
+<code class="sig-prename descclassname">data.database.</code><code class="sig-name descname">update_pacemaker_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conn</span></em>, <em class="sig-param"><span class="n">cursor</span></em>, <em class="sig-param"><span class="n">id</span></em>, <em class="sig-param"><span class="n">values</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.database.update_pacemaker_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>update_pacemaker_parameters Given a list of pacemaker parameters, updates the database values</p>
+<p>When given handler to the database and the unique ID of the user being affected, will update the
+users pacemaker parameters to match the input list.
+NOTE: No complete check is done to ensure the validity of the input, it is up
+to the method user to ensure the lists correctness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conn</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Connection</span></code>) – The connection handler for the database whos contents to change</p></li>
+<li><p><strong>cursor</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">sqlite3.Cursor</span></code>) – The cursor handler for the database whos contents to change</p></li>
+<li><p><strong>id</strong> (<em>int</em>) – The unique ID of the user whos parameters should be changed</p></li>
+<li><p><strong>values</strong> (<em>list</em>) – A list of pacemaker parameters, whos order matches the databases contents</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-data.user">
+<span id="data-user"></span><h1>Data User<a class="headerlink" href="#module-data.user" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="user-class">
+<h2>User Class<a class="headerlink" href="#user-class" title="Permalink to this headline">¶</a></h2>
+<p>The class to represent a user of this application.
+Capable of initializing and accessing the database
+specified in the application configuration, as well
+as loggin in and out, creating an account, and
+modifying the pacemaker parameters of the currently
+logged in user.</p>
+<dl class="py class">
+<dt id="data.user.User">
+<em class="property">class </em><code class="sig-prename descclassname">data.user.</code><code class="sig-name descname">User</code><a class="headerlink" href="#data.user.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a class representation of a simple flask app user</p>
+<p>The class to represent a user of this application.
+Capable of initializing and accessing the database
+specified in the application configuration, as well
+as loggin in and out, creating an account, and
+modifying the pacemaker parameters of the currently
+logged in user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (class:<cite>configparser.ConfigParser</cite>) – A handle to the <code class="xref py py-class docutils literal notranslate"><span class="pre">configparser.ConfigParser</span></code> config
+object initialized by the main application on startup</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="data.user.User.create_account">
+<code class="sig-name descname">create_account</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">username</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.create_account" title="Permalink to this definition">¶</a></dt>
+<dd><p>create_account Creates a new user account</p>
+<p>Checks the database to ensure no user with the same username exists,
+and that the maximum allowable local-agents has not been exceeded
+(defined in the application.ini). If no conflicts exist, a new user
+is created then both inserted into the database and logged in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<em>str</em>) – The username of the new user being created</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – The password of the new user being created</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the account creation was successful, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.create_history_file">
+<code class="sig-name descname">create_history_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.create_history_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>create_history_file Creates a csv file containing the users parameter history</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.get_history">
+<code class="sig-name descname">get_history</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.get_history" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_history Get the users history</p>
+<p>Gets the users curretn history by calling the database
+helper function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list fo the users history, including the current pacemaker values</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.get_limits">
+<code class="sig-name descname">get_limits</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.get_limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_limits Get the users parameter limits</p>
+<p>Returns a dictionary of all the users parameter limits
+as they were defined in the application configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary of the users parameter limits</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.get_pacemaker_mode">
+<code class="sig-name descname">get_pacemaker_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.get_pacemaker_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_pacemaker_mode Returns the current pacemaker mode</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The current pacemaker mode, can be either a String or None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.get_pacemaker_parameters">
+<code class="sig-name descname">get_pacemaker_parameters</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.get_pacemaker_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_pacemaker_parameters Returns a dictionary of this users pacemaker parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary of this users pacemaker parameters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.get_username">
+<code class="sig-name descname">get_username</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.get_username" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_username Returns this users username</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>This users username</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.is_loggedin">
+<code class="sig-name descname">is_loggedin</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.is_loggedin" title="Permalink to this definition">¶</a></dt>
+<dd><p>is_loggedin Checks if this user is logged in</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if the user is logged in, False otherwise</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.login">
+<code class="sig-name descname">login</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">username</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>login Attempts to log a user in, given their username and password</p>
+<p>Searches the database to check if the user with matching username and
+password exists. No conflict management (i.e. ensuring only one user
+matches that username) is necessary since it is handled on account
+creation. If a matching user is found the <a class="reference internal" href="#module-data.user" title="data.user"><code class="xref py py-class docutils literal notranslate"><span class="pre">data.user</span></code></a> is updated
+with that users information and the user is logged in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<em>str</em>) – The username of the user trying to login</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – The password of the user trying to login</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.logout">
+<code class="sig-name descname">logout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>logout Logs out the currently logged in user</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.update_all_pacemaker_parameters">
+<code class="sig-name descname">update_all_pacemaker_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">values</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.update_all_pacemaker_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>update_all_pacemaker_parameters Updates all pacemaker parameters</p>
+<p>Given a list of pacemaker parameters, in the same order as the values of
+the pacemaker parameters dictionary, will update every value of the dictionary.
+NOTE: No complete check is done to ensure the validity of the input, it is up
+to the method user to ensure the lists correctness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> (<em>list</em>) – An ordered list of the updated pacemaker parameters</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the pacemaker parameters were updated sucessfully, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.update_pacemaker_mode">
+<code class="sig-name descname">update_pacemaker_mode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mode</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.update_pacemaker_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>update_pacemaker_mode Changes the pacemaker mode</p>
+<p>Given a mode that is contained in the application
+configurations list of allowed modes, will change
+the current pacemaker mode to the new one. If no
+valid mode is given will do nothing and return
+False.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mode</strong> (<em>str</em>) – The pacemaker mode to change to</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the pacemaker mode was successfully changed, Fale otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="data.user.User.update_pacemaker_parameter">
+<code class="sig-name descname">update_pacemaker_parameter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#data.user.User.update_pacemaker_parameter" title="Permalink to this definition">¶</a></dt>
+<dd><p>update_pacemaker_parameter Updates a single pacemaker parameter</p>
+<p>Given a valid key (one already contained in the pacemaker parameters
+dictionary), will update the value of that key with the passes in
+value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – A key already contained in the pacemaker parameters dictionary</p></li>
+<li><p><strong>value</strong> (<em>int</em>) – An updated value for the associated key</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True if the parameter was sucessfully updated, False otherwise</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-graphs.graphing">
+<span id="graphs-graphing"></span><h1>Graphs Graphing<a class="headerlink" href="#module-graphs.graphing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="graphing-library">
+<h2>Graphing Library<a class="headerlink" href="#graphing-library" title="Permalink to this headline">¶</a></h2>
+<p>A collection of graphiung functions
+used by the app to generate both data
+points to be rendered live, as well as
+publish a graphs history to a csv file.</p>
+<dl class="py function">
+<dt id="graphs.graphing.publish_data">
+<code class="sig-prename descclassname">graphs.graphing.</code><code class="sig-name descname">publish_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">username</span></em><span class="sig-paren">)</span><a class="headerlink" href="#graphs.graphing.publish_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>publish_data Publishes the current (or most recent) live graphs data to a csv file</p>
+<p>Will generate a csv file containing all the data from when the current (or most recent)
+graph was started.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="graphs.graphing.random">
+<code class="sig-prename descclassname">graphs.graphing.</code><code class="sig-name descname">random</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; x in the interval [0, 1).<a class="headerlink" href="#graphs.graphing.random" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="graphs.graphing.set_start_time">
+<code class="sig-prename descclassname">graphs.graphing.</code><code class="sig-name descname">set_start_time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graphs.graphing.set_start_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>set_start_time Sets the start time for the graph</p>
+<p>Called when starting a new graph, will reset the running
+timer allowing the new graph to start at the zero value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="graphs.graphing.temp_serial_placeholder">
+<code class="sig-prename descclassname">graphs.graphing.</code><code class="sig-name descname">temp_serial_placeholder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graphs.graphing.temp_serial_placeholder" title="Permalink to this definition">¶</a></dt>
+<dd><p>temp_serial_placeholder Placeholder for serial functionality</p>
+<p>Generates a sine and cosine point output to be rendered to the
+live graphs to test their functionality without relying on the
+serial communications.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list containing a sine and cosine point in this format [ sine(current_time), cos(current_time)]</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="graphs.graphing.update_data">
+<code class="sig-prename descclassname">graphs.graphing.</code><code class="sig-name descname">update_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graphs.graphing.update_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>update_data Returns a new data point for the graph</p>
+<p>Called to request a new data point for the live graph.
+Will return a list of lists, each internal list containing
+a point with a timestamp (x-value) and parameter value (y-value).
+The timestamp is determined by the time difference between ‘now’ and
+when the set_start_time() function was last called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of lists containing a new point to be added to each line being rendered by the live graph</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="tests-tests">
+<h1>Tests Tests<a class="headerlink" href="#tests-tests" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
@@ -175,13 +963,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="modules.html" class="btn btn-neutral float-right" title="flaskapp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-    </div>
   
 
   <hr/>

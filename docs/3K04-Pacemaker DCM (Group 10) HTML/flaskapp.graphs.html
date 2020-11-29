@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>flaskapp.graphs package &mdash; Pacemaker DCM (Group 10)  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Pacemaker DCM (Group 10)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">flaskapp.graphs package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-flaskapp.graphs.graphing">flaskapp.graphs.graphing module</a><ul>
+<li><a class="reference internal" href="#graphing-library">Graphing Library</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-flaskapp.graphs">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pacemaker DCM (Group 10)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>flaskapp.graphs package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/flaskapp.graphs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="flaskapp-graphs-package">
+<h1>flaskapp.graphs package<a class="headerlink" href="#flaskapp-graphs-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-flaskapp.graphs.graphing">
+<span id="flaskapp-graphs-graphing-module"></span><h2>flaskapp.graphs.graphing module<a class="headerlink" href="#module-flaskapp.graphs.graphing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="graphing-library">
+<h3>Graphing Library<a class="headerlink" href="#graphing-library" title="Permalink to this headline">¶</a></h3>
+<p>A collection of graphiung functions
+used by the app to generate both data
+points to be rendered live, as well as
+publish a graphs history to a csv file.</p>
+<dl class="py function">
+<dt id="flaskapp.graphs.graphing.current_time_milli">
+<code class="sig-prename descclassname">flaskapp.graphs.graphing.</code><code class="sig-name descname">current_time_milli</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.graphs.graphing.current_time_milli" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.graphs.graphing.publish_data">
+<code class="sig-prename descclassname">flaskapp.graphs.graphing.</code><code class="sig-name descname">publish_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">username</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.graphs.graphing.publish_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>publish_data Publishes the current (or most recent) live graphs data to a csv file</p>
+<p>Will generate a csv file containing all the data from when the current (or most recent)
+graph was started.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.graphs.graphing.random">
+<code class="sig-prename descclassname">flaskapp.graphs.graphing.</code><code class="sig-name descname">random</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; x in the interval [0, 1).<a class="headerlink" href="#flaskapp.graphs.graphing.random" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.graphs.graphing.set_start_time">
+<code class="sig-prename descclassname">flaskapp.graphs.graphing.</code><code class="sig-name descname">set_start_time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.graphs.graphing.set_start_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>set_start_time Sets the start time for the graph</p>
+<p>Called when starting a new graph, will reset the running
+timer allowing the new graph to start at the zero value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.graphs.graphing.temp_serial_placeholder">
+<code class="sig-prename descclassname">flaskapp.graphs.graphing.</code><code class="sig-name descname">temp_serial_placeholder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.graphs.graphing.temp_serial_placeholder" title="Permalink to this definition">¶</a></dt>
+<dd><p>temp_serial_placeholder Placeholder for serial functionality</p>
+<p>Generates a sine and cosine point output to be rendered to the
+live graphs to test their functionality without relying on the
+serial communications.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list containing a sine and cosine point in this format [ sine(current_time), cos(current_time)]</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="flaskapp.graphs.graphing.update_data">
+<code class="sig-prename descclassname">flaskapp.graphs.graphing.</code><code class="sig-name descname">update_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.graphs.graphing.update_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>update_data Returns a new data point for the graph</p>
+<p>Called to request a new data point for the live graph.
+Will return a list of lists, each internal list containing
+a point with a timestamp (x-value) and parameter value (y-value).
+The timestamp is determined by the time difference between ‘now’ and
+when the set_start_time() function was last called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of lists containing a new point to be added to each line being rendered by the live graph</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="module-flaskapp.graphs">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-flaskapp.graphs" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Graham Power, Hamza Ashraf
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

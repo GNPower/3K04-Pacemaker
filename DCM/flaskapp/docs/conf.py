@@ -18,7 +18,7 @@ sys.path.append('D:/School/Year 3/Semester 1/3K04/PacemakerProject/DCM/flaskapp'
 
 # -- Project information -----------------------------------------------------
 
-project = '3K04-PacemakerProject DCM (Group 10)'
+project = 'Pacemaker DCM (Group 10)'
 copyright = '2020, Graham Power, Hamza Ashraf'
 author = 'Graham Power, Hamza Ashraf'
 
@@ -31,14 +31,9 @@ author = 'Graham Power, Hamza Ashraf'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
-    'rst2pdf.pdfbuilder'
+    'rst2pdf.pdfbuilder',
+    'rinoh.frontend.sphinx'
 ]
-
-napoleon_google_docstring = False
-napoleon_use_param = False
-napoleon_use_ivar = True
-
-pdf_documents = [('index', u'3K04-Pacemaker Project Code Documentation', u'3K04-Pacemaker Project Code Documentation', u'Graham Power, Hamza Ashraf'),]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -47,6 +42,13 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+
+latex_elements = {
+    'papersize':'letterpaper',
+    'pointsize':'10pt',
+    'preamble':'',
+    'figure_align':'htbp'
+}
 
 
 # -- Options for HTML output -------------------------------------------------

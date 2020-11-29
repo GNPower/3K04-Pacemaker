@@ -1,0 +1,126 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter A
+  \item \spxentry{app}
+    \subitem \spxentry{module}, \hyperpage{1}
+
+  \indexspace
+  \bigletter C
+  \item \spxentry{Config}\spxextra{class in config.config\_manager}, \hyperpage{3}
+  \item \spxentry{config.config\_manager}
+    \subitem \spxentry{module}, \hyperpage{3}
+  \item \spxentry{config.decorators}
+    \subitem \spxentry{module}, \hyperpage{7}
+  \item \spxentry{create\_account()}\spxextra{data.user.User method}, \hyperpage{13}
+  \item \spxentry{create\_history\_file()}\spxextra{data.user.User method}, \hyperpage{13}
+
+  \indexspace
+  \bigletter D
+  \item \spxentry{data.database}
+    \subitem \spxentry{module}, \hyperpage{9}
+  \item \spxentry{data.user}
+    \subitem \spxentry{module}, \hyperpage{13}
+
+  \indexspace
+  \bigletter F
+  \item \spxentry{find\_user()}\spxextra{in module data.database}, \hyperpage{9}
+
+  \indexspace
+  \bigletter G
+  \item \spxentry{get()}\spxextra{config.config\_manager.Config method}, \hyperpage{3}
+  \item \spxentry{get\_all()}\spxextra{config.config\_manager.Config method}, \hyperpage{3}
+  \item \spxentry{get\_history()}\spxextra{data.user.User method}, \hyperpage{13}
+  \item \spxentry{get\_limits()}\spxextra{data.user.User method}, \hyperpage{13}
+  \item \spxentry{get\_pacemaker\_mode()}\spxextra{data.user.User method}, \hyperpage{14}
+  \item \spxentry{get\_pacemaker\_parameters()}\spxextra{data.user.User method}, \hyperpage{14}
+  \item \spxentry{get\_rows()}\spxextra{in module data.database}, \hyperpage{9}
+  \item \spxentry{get\_user()}\spxextra{in module data.database}, \hyperpage{9}
+  \item \spxentry{get\_user\_history()}\spxextra{in module data.database}, \hyperpage{10}
+  \item \spxentry{get\_user\_parameters()}\spxextra{in module data.database}, \hyperpage{10}
+  \item \spxentry{get\_username()}\spxextra{data.user.User method}, \hyperpage{14}
+  \item \spxentry{getboolean()}\spxextra{config.config\_manager.Config method}, \hyperpage{4}
+  \item \spxentry{getInstance()}\spxextra{config.config\_manager.Config static method}, 
+		\hyperpage{3}
+  \item \spxentry{getInstance()}\spxextra{config.config\_manager.Logger static method}, 
+		\hyperpage{4}
+  \item \spxentry{graphs.graphing}
+    \subitem \spxentry{module}, \hyperpage{17}
+
+  \indexspace
+  \bigletter H
+  \item \spxentry{home()}\spxextra{in module app}, \hyperpage{1}
+
+  \indexspace
+  \bigletter I
+  \item \spxentry{init\_db()}\spxextra{in module data.database}, \hyperpage{10}
+  \item \spxentry{insert\_user()}\spxextra{in module data.database}, \hyperpage{10}
+  \item \spxentry{is\_loggedin()}\spxextra{data.user.User method}, \hyperpage{14}
+
+  \indexspace
+  \bigletter L
+  \item \spxentry{log()}\spxextra{config.config\_manager.Logger method}, \hyperpage{4}
+  \item \spxentry{Logger}\spxextra{class in config.config\_manager}, \hyperpage{4}
+  \item \spxentry{login()}\spxextra{data.user.User method}, \hyperpage{14}
+  \item \spxentry{login\_required()}\spxextra{in module config.decorators}, \hyperpage{7}
+  \item \spxentry{logout()}\spxextra{data.user.User method}, \hyperpage{14}
+  \item \spxentry{logout()}\spxextra{in module app}, \hyperpage{1}
+  \item \spxentry{logout\_required()}\spxextra{in module config.decorators}, \hyperpage{7}
+
+  \indexspace
+  \bigletter M
+  \item \spxentry{module}
+    \subitem \spxentry{app}, \hyperpage{1}
+    \subitem \spxentry{config.config\_manager}, \hyperpage{3}
+    \subitem \spxentry{config.decorators}, \hyperpage{7}
+    \subitem \spxentry{data.database}, \hyperpage{9}
+    \subitem \spxentry{data.user}, \hyperpage{13}
+    \subitem \spxentry{graphs.graphing}, \hyperpage{17}
+    \subitem \spxentry{tests.tests}, \hyperpage{19}
+
+  \indexspace
+  \bigletter O
+  \item \spxentry{open\_browser()}\spxextra{in module app}, \hyperpage{1}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{publish\_data()}\spxextra{in module graphs.graphing}, \hyperpage{17}
+
+  \indexspace
+  \bigletter R
+  \item \spxentry{random()}\spxextra{in module app}, \hyperpage{1}
+  \item \spxentry{random()}\spxextra{in module graphs.graphing}, \hyperpage{17}
+  \item \spxentry{read\_config()}\spxextra{config.config\_manager.Config method}, \hyperpage{4}
+
+  \indexspace
+  \bigletter S
+  \item \spxentry{set\_start\_time()}\spxextra{in module graphs.graphing}, \hyperpage{17}
+  \item \spxentry{start\_logger()}\spxextra{config.config\_manager.Logger method}, \hyperpage{5}
+
+  \indexspace
+  \bigletter T
+  \item \spxentry{temp\_serial\_placeholder()}\spxextra{in module graphs.graphing}, \hyperpage{17}
+  \item \spxentry{tests.tests}
+    \subitem \spxentry{module}, \hyperpage{19}
+
+  \indexspace
+  \bigletter U
+  \item \spxentry{update\_all\_pacemaker\_parameters()}\spxextra{data.user.User method}, 
+		\hyperpage{14}
+  \item \spxentry{update\_data()}\spxextra{in module graphs.graphing}, \hyperpage{17}
+  \item \spxentry{update\_pacemaker\_mode()}\spxextra{data.user.User method}, \hyperpage{14}
+  \item \spxentry{update\_pacemaker\_parameter()}\spxextra{data.user.User method}, \hyperpage{15}
+  \item \spxentry{update\_pacemaker\_parameters()}\spxextra{in module data.database}, 
+		\hyperpage{11}
+  \item \spxentry{User}\spxextra{class in data.user}, \hyperpage{13}
+  \item \spxentry{user\_connect()}\spxextra{in module app}, \hyperpage{1}
+  \item \spxentry{user\_data()}\spxextra{in module app}, \hyperpage{1}
+  \item \spxentry{user\_egram()}\spxextra{in module app}, \hyperpage{2}
+  \item \spxentry{user\_history()}\spxextra{in module app}, \hyperpage{2}
+  \item \spxentry{user\_page()}\spxextra{in module app}, \hyperpage{2}
+  \item \spxentry{user\_parameters()}\spxextra{in module app}, \hyperpage{2}
+
+\end{sphinxtheindex}

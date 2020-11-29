@@ -1,2 +1,4 @@
-#python -u pip install requirements.txt
+pytest==6.1.1
 Flask==1.1.2
+numpy==1.19.3
+matplotlib==3.3.3

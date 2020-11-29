@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>flaskapp.config package &mdash; 3K04-PacemakerProject DCM (Group 10)  documentation</title>
+  <title>flaskapp.config package &mdash; Pacemaker DCM (Group 10)  documentation</title>
   
 
   
@@ -35,9 +35,7 @@
 
     
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="flaskapp.data package" href="flaskapp.data.html" />
-    <link rel="prev" title="flaskapp package" href="flaskapp.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -51,7 +49,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> 3K04-PacemakerProject DCM (Group 10)
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Pacemaker DCM (Group 10)
           
 
           
@@ -82,25 +80,23 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">flaskapp</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="flaskapp.html">flaskapp package</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="flaskapp.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">flaskapp.config package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="flaskapp.data.html">flaskapp.data package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="flaskapp.tests.html">flaskapp.tests package</a></li>
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">flaskapp.config package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-flaskapp.config.config_manager">flaskapp.config.config_manager module</a><ul>
+<li><a class="reference internal" href="#config-manager">Config Manager</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="flaskapp.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="flaskapp.html#module-flaskapp.app">flaskapp.app module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="flaskapp.html#module-flaskapp">Module contents</a></li>
+<li><a class="reference internal" href="#module-flaskapp.config.decorators">flaskapp.config.decorators module</a><ul>
+<li><a class="reference internal" href="#decorators-library">Decorators Library</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#module-flaskapp.config">Module contents</a></li>
 </ul>
 </li>
 </ul>
-
+</div>
             
           
         </div>
@@ -114,7 +110,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">3K04-PacemakerProject DCM (Group 10)</a>
+          <a href="index.html">Pacemaker DCM (Group 10)</a>
         
       </nav>
 
@@ -145,10 +141,6 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="modules.html">flaskapp</a> &raquo;</li>
-        
-          <li><a href="flaskapp.html">flaskapp package</a> &raquo;</li>
-        
       <li>flaskapp.config package</li>
     
     
@@ -178,50 +170,209 @@
 <div class="section" id="config-manager">
 <h3>Config Manager<a class="headerlink" href="#config-manager" title="Permalink to this headline">¶</a></h3>
 <p>A collection of configuration setup
-functions, to initialize the config
+classes, to initialize the config
 variables and setup application
-logging.</p>
-<dl class="py function">
-<dt id="flaskapp.config.config_manager.init_config">
-<code class="sig-prename descclassname">flaskapp.config.config_manager.</code><code class="sig-name descname">init_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg_files</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.config.config_manager.init_config" title="Permalink to this definition">¶</a></dt>
-<dd><p>init_config Initializes the application configuration given a list of configuration files</p>
-<p>Will read all configuration files, creating a application varaible matching the value in the
-files. File locations in the list must be specified relative to the ~/3K04-Pacemaker/DCM/flaskapp/config
-directory. The order of the files in the list matters, as any repeat variables will have their previous
-values overriden. This allows for a default application configuration to be specified and later overriden
-by an end user.</p>
+logging as well as allow access to
+both the config variables and logging
+function directly form anwhere within
+the application.</p>
+<dl class="py class">
+<dt id="flaskapp.config.config_manager.Config">
+<em class="property">class </em><code class="sig-prename descclassname">flaskapp.config.config_manager.</code><code class="sig-name descname">Config</code><a class="headerlink" href="#flaskapp.config.config_manager.Config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The configuration class, holds all the configuration information</p>
+<p>Manages the configuration and provides access to the config through a
+singleton implementation. Its get method can be called from anywhere
+within the application the Config class is imported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Exception</strong> – This class is a singleton!</p></li>
+<li><p><strong>Exception</strong> – Configuration can only be read once!</p></li>
+<li><p><strong>Exception</strong> – Configutation has not been read, read_config() must be called first!</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="flaskapp.config.config_manager.Config.get">
+<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">variable</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.config.config_manager.Config.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>get Gets a variable from the configuration</p>
+<p>Given a configuration section and variable name within that section
+will return the value of the variable as a string</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cfg_files</strong> (<em>list</em><em>, </em><em>optional</em>) – A list of config file locations, defaults to []</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section</strong> (<em>str</em>) – The section in the configuration file to find the variable in</p></li>
+<li><p><strong>variable</strong> (<em>str</em>) – The variable name to read from the section</p></li>
+</ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A handler for the applications configuration manager</p>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – Configutation has not been read, read_config() must be called first!</p>
 </dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">configparser.ConfigParser</span></code></p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The string representation of the variable</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt id="flaskapp.config.config_manager.init_logging">
-<code class="sig-prename descclassname">flaskapp.config.config_manager.</code><code class="sig-name descname">init_logging</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.config.config_manager.init_logging" title="Permalink to this definition">¶</a></dt>
-<dd><p>init_logging Initializes the application logging</p>
-<p>Will create two logging handlers, a file and stream hendler. This ensures all
-log output is sent to both the console at runtime as well as a dated log file
-located in the /logs directory. Both handlers are created as defined in the
-Logging section of the application configuration files.</p>
+<dl class="py method">
+<dt id="flaskapp.config.config_manager.Config.getInstance">
+<em class="property">static </em><code class="sig-name descname">getInstance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.config.config_manager.Config.getInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>getInstance Gets the current instance of Config</p>
+<p>If no instance exists, it will create the initial instance
+before returning it.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>config</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">configparser.ConfigParser</span></code>) – The handler for the application configuration</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A singleton instance of the Config class</p>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>A handler for the applications logging manager</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Logger</span></code></p>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">config_manager.Config</span></code></p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.config.config_manager.Config.get_all">
+<code class="sig-name descname">get_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.config.config_manager.Config.get_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>get_all Gets all variable and values within a section</p>
+<p>Given a configuration section from the configuration files
+will return a dictionary containing all variable names and
+values from within that section. All varaible names and values
+are stored in their string representation within the dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>section</strong> (<em>str</em>) – The section of the configuration file to read</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – Configutation has not been read, read_config() must be called first!</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dictionary conatianing variable name, value pairs</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.config.config_manager.Config.getboolean">
+<code class="sig-name descname">getboolean</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">section</span></em>, <em class="sig-param"><span class="n">variable</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.config.config_manager.Config.getboolean" title="Permalink to this definition">¶</a></dt>
+<dd><p>getboolean Gets a variable from the configuration</p>
+<p>Given a configuration section and variable name within that section
+will return the value of the variable as a boolean. The value in the
+configuration file can only be in the form [yes/no, true/false, on/off, 1/0],
+for any other values this method will throw an error</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>section</strong> (<em>str</em>) – The section of the configuration file to find the variable in</p></li>
+<li><p><strong>variable</strong> (<em>str</em>) – The variable to read form the section</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – Configuration has not been rean, read_config() must be called first!</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The boolean representation of the variable</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.config.config_manager.Config.read_config">
+<code class="sig-name descname">read_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg_files</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.config.config_manager.Config.read_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>read_config Reads the configuration files</p>
+<p>Called on instance initialization. Will search the config
+directory for all .ini files and read their variable values
+into the Config Manager. Raises an exception if called more
+than once, to ensure variables are not changed mid execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cfg_files</strong> (<em>list</em><em>, </em><em>optional</em>) – A list of additional ini files to read, application.ini is added automatically, defaults to []</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – Configuration can only be read once!</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="flaskapp.config.config_manager.Logger">
+<em class="property">class </em><code class="sig-prename descclassname">flaskapp.config.config_manager.</code><code class="sig-name descname">Logger</code><a class="headerlink" href="#flaskapp.config.config_manager.Logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The Logger class, holds all logging information</p>
+<p>This class can initialize a logger through a singleton
+implementation. Its method can be called from anywhere
+within the application where the Logger class is imported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Exception</strong> – This class is a singleton!</p></li>
+<li><p><strong>Exception</strong> – Logger can only be started once!</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="flaskapp.config.config_manager.Logger.getInstance">
+<em class="property">static </em><code class="sig-name descname">getInstance</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.config.config_manager.Logger.getInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>getInstance Get the current instance of Logger</p>
+<p>If no instance exists it will create the initial
+instance before returning it</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A singleton instance of the Logger class</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">config_manager.Logger</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.config.config_manager.Logger.log">
+<code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em>, <em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.config.config_manager.Logger.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>log Will log a message</p>
+<p>Given a message and the level of that message, this
+method will log the message to all the Loggers handlers
+(i.e. file and terminal) only if the log level is equal
+to or higher than the Logger’s log level defined in the
+applications configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> (<em>str</em>) – The level of the message being logged can take the values: DEBUG, INFO, WARN, ERROR, CRITICAL</p></li>
+<li><p><strong>msg</strong> (<em>str</em>) – The message to be logged by the Logger</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="flaskapp.config.config_manager.Logger.start_logger">
+<code class="sig-name descname">start_logger</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskapp.config.config_manager.Logger.start_logger" title="Permalink to this definition">¶</a></dt>
+<dd><p>start_logger Starts the logger</p>
+<p>This method must be called by the main block of the application.
+It will create the log file and start the logging process both to
+the log file and the terminal</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>config</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">config_manager.Config</span></code>) – The Instance of Config, which must be created and initialized before the Logger is started</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>Exception</strong> – Logger can only be started once!</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -291,15 +442,6 @@ to invoke this function.</p>
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="flaskapp.data.html" class="btn btn-neutral float-right" title="flaskapp.data package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="flaskapp.html" class="btn btn-neutral float-left" title="flaskapp package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
