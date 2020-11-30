@@ -20,7 +20,7 @@ from config.decorators import login_required, logout_required
 from data.user import User
 from data.database import init_db
 from graphs.graphing import update_data, publish_data, set_start_time
-#from serialcom.sendSerial import sendSerial
+from serialcom.sendSerial import sendSerial
 
 
 #initialize the config and logger before createing the app
@@ -36,6 +36,7 @@ user = User()
 app = Flask(__name__)
 app.secret_key = Config.getInstance().get('Applictation', 'app.secret-key')
 
+global this_port
 this_port = None
 
 
@@ -153,11 +154,18 @@ def user_connect():
     #sets the default pacemaker mode to 'None', forcing the user to select a mode manually
     #This is an attempt to avoid the user programming the pacemaker in a mode they did not intend
     mode = user.get_pacemaker_mode()
+    global this_port
     if request.method == 'POST':
         if 'Program' in request.form:
             print('PROGRAM REQUEST ------ PROGRAM REQUEST')
             this_port = request.form['Comm Port']
-            #sendSerial(user.get_pacemaker_mode(), *list(user.get_pacemaker_parameters().values()), request.form['Comm Port'])
+            programmable_parameters = []
+            for i in list(user.get_pacemaker_parameters().values()):
+                if i == None or i == 'None':
+                    programmable_parameters.append(0)
+                else:
+                    programmable_parameters.append(float(i))
+            sendSerial(user.get_pacemaker_mode(), *programmable_parameters, request.form['Comm Port'])
         elif 'Pacing Mode' in request.form:
             #print(request.form['Pacing Mode'])
             #Flashes the new pacing mode to the user to let them know the applications state has changed
