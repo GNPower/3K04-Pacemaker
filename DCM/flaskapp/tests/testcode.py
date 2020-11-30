@@ -1,4 +1,5 @@
 import os, inspect, sys, datetime, time, random, string, glob, shutil
+import serial.tools.list_ports
 from string import ascii_lowercase
 from random import choice
 
@@ -61,25 +62,9 @@ def init_config_and_logger(cfg_files=[]):
     lgr.start_logger(cfg)
 
 
-create_test_config()
-init_config_and_logger(cfg_files=[test_config_name])
-    
+ports = serial.tools.list_ports.comports()
+port_list = []
+for port, desc, hwid in sorted(ports):
+        port_list.append(port)
 
-set_start_time()
-for i in range(0,3000):
-    update_data()
-    sleep(0.001)
-
-username = ''.join(choice(ascii_lowercase) for x in range(10))
-publish_data(username)
-
-
-os.chdir(os.path.join(parentfolder, 'downloads'))
-file_list = []
-for _file in glob.glob(username + "*.csv"):
-    file_list.append(_file)
-for _file in glob.glob(username + "*.pdf"):
-    file_list.append(_file)
-assert len(file_list) == 2
-assert file_list[0].endswith(".csv")
-assert file_list[1].endswith(".pdf")
+print(port_list)

@@ -13,12 +13,14 @@ from threading import Timer
 from time import time
 from random import random
 import webbrowser, sqlite3, re, json
+import serial.tools.list_ports
 
 from config.config_manager import Config, Logger
 from config.decorators import login_required, logout_required
 from data.user import User
 from data.database import init_db
-from graphs.graphing import update_data, publish_data
+from graphs.graphing import update_data, publish_data, set_start_time
+#from serialcom.sendSerial import sendSerial
 
 
 #initialize the config and logger before createing the app
@@ -33,6 +35,8 @@ user = User()
 #create the flask app, passing this file as the main, and a random string as the secret key
 app = Flask(__name__)
 app.secret_key = Config.getInstance().get('Applictation', 'app.secret-key')
+
+this_port = None
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -150,7 +154,11 @@ def user_connect():
     #This is an attempt to avoid the user programming the pacemaker in a mode they did not intend
     mode = user.get_pacemaker_mode()
     if request.method == 'POST':
-        if 'Pacing Mode' in request.form:
+        if 'Program' in request.form:
+            print('PROGRAM REQUEST ------ PROGRAM REQUEST')
+            this_port = request.form['Comm Port']
+            #sendSerial(user.get_pacemaker_mode(), *list(user.get_pacemaker_parameters().values()), request.form['Comm Port'])
+        elif 'Pacing Mode' in request.form:
             #print(request.form['Pacing Mode'])
             #Flashes the new pacing mode to the user to let them know the applications state has changed
             flash('Pacing Mode Changed To {0}'.format(request.form['Pacing Mode']))
@@ -174,7 +182,11 @@ def user_connect():
     else:
         parameters = { re.sub(r"(\w)([A-Z])", r"\1 \2", k): user.get_pacemaker_parameters()[k] for k in [ value.replace(' ', '') for value in Config.getInstance().get('Parameters', 'parameters.mode.' + str(mode)).split(',') ] }
     modes = Config.getInstance().get('Parameters', 'parameters.modes').split(',')
-    return render_template('user_connect.html', mode=mode, modes=modes, parameters=parameters, limits=user.get_limits())
+    ports = serial.tools.list_ports.comports()
+    port_list = []
+    for port, desc, hwid in sorted(ports):
+            port_list.append(port)
+    return render_template('user_connect.html', port=this_port, ports=port_list, mode=mode, modes=modes, parameters=parameters, limits=user.get_limits())
 
 
 @app.route('/user/history', methods=['GET', 'POST'])
@@ -212,6 +224,7 @@ def user_egram():
     """
     if request.method == 'POST':
         publish_data(user.get_username())
+    set_start_time()
     domain = int(Config.getInstance().get('Graphing', 'graph.domain'))
     period = int(Config.getInstance().get('Graphing', 'graph.update-period'))
     return render_template('user_egram.html', domain=domain, period=period)
