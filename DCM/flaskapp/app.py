@@ -159,13 +159,15 @@ def user_connect():
         if 'Program' in request.form:
             print('PROGRAM REQUEST ------ PROGRAM REQUEST')
             this_port = request.form['Comm Port']
-            programmable_parameters = []
-            for i in list(user.get_pacemaker_parameters().values()):
-                if i == None or i == 'None':
-                    programmable_parameters.append(0)
-                else:
-                    programmable_parameters.append(float(i))
-            sendSerial(user.get_pacemaker_mode(), *programmable_parameters, request.form['Comm Port'])
+            # programmable_parameters = []
+            # for i in list(user.get_pacemaker_parameters().values()):
+            #     if i == None or i == 'None':
+            #         programmable_parameters.append(0)
+            #     else:
+            #         programmable_parameters.append(float(i))
+            result = sendSerial(user.get_pacemaker_mode(), user.get_pacemaker_parameters(), request.form['Comm Port'])
+            if result == False:
+                flash('"None" values are not allowed!')
         elif 'Pacing Mode' in request.form:
             #print(request.form['Pacing Mode'])
             #Flashes the new pacing mode to the user to let them know the applications state has changed

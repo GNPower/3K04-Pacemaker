@@ -62,9 +62,10 @@ def init_config_and_logger(cfg_files=[]):
     lgr.start_logger(cfg)
 
 
-ports = serial.tools.list_ports.comports()
-port_list = []
-for port, desc, hwid in sorted(ports):
-        port_list.append(port)
+user = User()
 
-print(port_list)
+print(json.dumps(user.get_pacemaker_parameters(), indent=4, sort_keys=False))
+nones = not any(user.get_pacemaker_parameters().values())
+print(nones)
+
+sorted((minval, value, maxval))[1]
